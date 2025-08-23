@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Teste</title>
+        <meta charset="UTF-8">
+        <style>
+           body {
+            background-color: #666666ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+            .container {
+                display: flex;                    
+                width: 1200px;   
+                height: 600px;
+            }
+            .menu {
+                background-color: black;
+                padding-top: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 1px solid green;
+                flex: 0 0 50px;
+                border-radius: 30px;
+                overflow: hidden;
+
+            }
+            .mapa {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid blue;
+                flex-grow: 1;
+                height: 100%;
+                border-radius: 30px;
+                overflow: hidden;
+            }
+            .musica {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 0 0 300px;
+                
+            }
+            .imagem{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                flex: 1;
+                border: 1px solid #5c4e00ff; 
+                border-radius: 30px;
+                overflow: hidden;
+            }
+            .play{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                flex: 1 0 auto;
+                border: 1px solid #5c4e00ff; 
+                border-radius: 30px;
+                overflow: hidden;
+            }
+            
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class = "menu">
+                <div class="horario">horario</div>
+                <div class="telefone">telefone</div>
+                <div class="waze">waze</div>
+                <div class="configuracao">configuração</div>
+
+
+            </div>
+            <div class = "mapa">
+                <div class="mapa">
+                    <iframe
+                    width="100%"
+                    height="100%"
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.601921735006!2d-49.25725311114504!3d-25.451568999999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce4fa6efc3181%3A0x8b0f452491a6f477!2sPUCPR%20-%20Pontif%C3%ADcia%20Universidade%20Cat%C3%B3lica%20do%20Paran%C3%A1!5e0!3m2!1spt-BR!2sbr!4v1755927581157!5m2!1spt-BR!2sbr">
+                    </iframe>
+                    
+                </div>
+            </div>
+
+            <div class = "musica">
+                <div class="imagem">imagem</div>
+                <div class="play">play</div> 
+            </div>
+        </div>
+    </body>
+</html>
