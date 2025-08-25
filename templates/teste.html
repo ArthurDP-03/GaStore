@@ -12,15 +12,18 @@
             .container {
                 display: flex;                    
                 width: 1200px;   
-                height: 600px;
+                height: 550px;
+                gap: 20px;
             }
             .menu {
+                color: white;
                 background-color: black;
                 padding-top: 30px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                border: 1px solid green;
+                box-shadow: 12px 12px 24px #000000ff,
+                -12px 12px 24px #000000ff;
                 flex: 0 0 50px;
                 border-radius: 30px;
                 overflow: hidden;
@@ -30,7 +33,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border: 1px solid blue;
+                box-shadow: 12px 12px 24px #000000ff,
+                -12px 12px 24px #000000ff;
                 flex-grow: 1;
                 height: 100%;
                 border-radius: 30px;
@@ -38,9 +42,10 @@
             }
             .musica {
                 display: flex;
+                justify-content: center;
                 flex-direction: column;
                 align-items: center;
-                flex: 0 0 300px;
+                flex: 0 0 30%;
                 
             }
             .imagem{
@@ -49,30 +54,79 @@
                 align-items: center;
                 width: 100%;
                 flex: 1;
-                border: 1px solid #5c4e00ff; 
+                box-shadow: 12px 12px 24px #000000ff,
+                -12px 12px 24px #000000ff; 
                 border-radius: 30px;
                 overflow: hidden;
             }
             .play{
+                background-color: #1ED761;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                flex: 1 0 auto;
-                border: 1px solid #5c4e00ff; 
+                flex: 1;
+                box-shadow: 12px 12px 24px #000000ff,
+                -12px 12px 24px #000000ff;
                 border-radius: 30px;
                 overflow: hidden;
             }
-            
+            .play img{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            .imagem{
+                background-color: #1ED761;
+            }
+            .imagem img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            } 
+            .menu{
+                gap: 20px;
+            }
+            .bateria{
+                font-size: 12px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .telefone{
+                text-align: center;
+                border-radius: 50%;
+            }
+            .telefone img{
+                width: 100%;
+                height: 90%;
+                border-radius: 50%;
+            }
+            .waze{
+                text-align: center;
+                border-radius: 50%;
+            }
+            .waze img{
+                width: 100%;
+                height: 90%;
+                border-radius: 50%;
+            }
         </style>
 
     </head>
     <body>
         <div class="container">
             <div class = "menu">
-                <div class="horario">horario</div>
-                <div class="telefone">telefone</div>
-                <div class="waze">waze</div>
+                <div class="bateria">
+                    Bateria<br>
+                    <div class="nivel">80%</div>
+                </div>
+                <div class="horario">12:45</div>
+                <div class="telefone">
+                    <img src="https://img.cdndsgni.com/preview/10000403.jpg" alt="Telefone">
+                </div>
+                <div class="waze">
+                    <img src="https://img.utdstc.com/icon/b39/6f7/b396f720a7eac6d988e7ef38efcb49028e9d99c54598d7033dc6fe8f2279dfd9:200" alt="Waze">
+                </div>
                 <div class="configuracao">configuração</div>
 
 
@@ -91,8 +145,12 @@
             </div>
 
             <div class = "musica">
-                <div class="imagem">imagem</div>
-                <div class="play">play</div> 
+                <div class="imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs9erMig3483V0dDXQiZhCLehewUDrTmzP-Q&s" alt="imagemMusica">
+                </div>
+                <div class="play"> 
+                    <img src="https://i.pinimg.com/1200x/d1/c1/3c/d1c13c1a2828086d1069d4d5e5dc1f01.jpg" alt="imagemMusica">
+                </div> 
             </div>
         </div>
     </body>
