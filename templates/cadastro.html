@@ -1,50 +1,42 @@
 <html>
-<head>
-    <title>Cadastro</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/cadastro.css">
+    <head>
+        <title>Cadastro</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/cadastro.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</head>
-<body>
-    <form action="/cadastrar" method="post">
-        <fieldset>
-            <legend>Cadastro</legend>
-            <br>
-            <label for="nome">Nome:</label>
-            <br>
-            <input type="text" id="nome" name="nome" required>
-            <br>
-
-            <label for="data_nascimento">Data de Nascimento:</label>
-            <br>
-            <input type="date" id="data_nascimento" name="data_nascimento" required>
-            <br>
-
-            <label for="cpf">CPF:</label>
-            <br>
-            <input type="text" id="cpf" name="cpf" required>
-            <br>
-
-            <label for="email">Email:</label>
-            <br>
-            <input type="email" id="email" name="email" required>
-            <br>
-
-            <label for="senha">Senha:</label>
-            <br>
-            <input type="password" id="senha" name="senha" required>
-            <br> 
-
-            <input type="submit" value="Cadastrar">
-        </fieldset>
-
-        <div class="login-link">
-            <fieldset>
-                <legend>Já possui uma conta?</legend>
-                <button type="button" onclick="window.location.href='/login'">Fazer login</button>
-            </fieldset>
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">GaStore</div>
+            </div>
+            <div class="cadastro-container">
+                <div class="cadastro-titulo">Crie sua conta</div>
+                <form class="cadastro-form">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de Nascimento:</label>
+                        <input type="date" id="data_nascimento" name="data_nascimento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF:</label>
+                        <input type="text" id="cpf" name="cpf" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
+                    <button type="submit" class="cadastro-button">Cadastrar</button>
+                </form>
+            </div>
         </div>
-        
-    </form>
-</body>
+    </body>
 </html>
