@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <title>Cadastro</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/cadastro.css">
+        <style>
+            body {
+                    background-color: #0a0a14;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    font-family: Arial, sans-serif;
+                    color: #c7c7d2;
+                    justify-content: center;
+                    align-items: center;
+
+                }
+                .container{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: stretch;
+                    width: 800px; 
+                    height: 400px;
+                    gap: 20px;
+                    
+                }
+                .logo-container, .cadastro-container{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                    border-radius: 20px;
+                    box-shadow: 
+                        -5px 10px 15px rgba(255, 255, 255, 0.534);
+                    overflow: hidden;
+                }
+                .logo{
+                    color: #d0d0e0;
+                    font-size: 32px; 
+                    font-weight: bold;
+                }
+                .logo-container {
+                    background: #1c1c2b;
+                    flex: 3;
+                }
+                .logo-container p{
+                    color: #c7c7d2;
+                    font-size: 15px;
+                    text-align: center;
+                    
+                }
+                .logo-container button{
+                    margin-top: 10px;
+                    background-color: #363647;
+                    border: none;
+                    border-radius: 5px;
+                    color: #d0d0e0;
+                    padding: 10px 15px;
+                    transition: background-color 0.3s ease;
+                    
+                }
+                .logo-container button:hover {
+                background-color: #464658; /* cor diferente */
+                }
+                .cadastro-container {
+                    background-color: #1c1c2b;
+                    flex:2;
+                    gap: 10px;
+                }
+                .cadastro-container form{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: stretch;
+                    width: 80%;
+                    flex: 0 1 auto;
+                    gap: 10px;
+                }
+                .cadastro-container form input{
+                    background-color: #0a0a14;
+                    border: 1px solid #1c1c2b;
+                    border-radius: 5px;
+                    padding: 5px;
+                    color: #d0d0e0;
+                }
+                .cadastro-container form input:hover{
+                    background-color: rgb(53, 53, 73);
+                }
+                .cadastro-container button{
+                    margin-top: 10px;
+                    background-color: #363647;
+                    border: none;
+                    border-radius: 5px;
+                    color: #d0d0e0;
+                    padding: 10px 15px;
+                    transition: background-color 0.3s ease;
+                }
+                .cadastro-container button:hover {
+                background-color: #464658; /* cor diferente */
+                }
+
+
+                .form-group input:focus {
+                color: #d0d0e0;
+                }
+                .cadastro-titulo{
+                    color: #d0d0e0;
+                    font-size: 20px; 
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                }
+
+
+                @media (max-width: 900px) {
+                    .container {
+                        width: 70%;
+                        height: auto; 
+                        flex-direction: column;
+                    }
+                    .logo-container {
+                        padding: 40px 20px;
+                    }
+                }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">GaStore</div>
+                <p>Jogue os melhores jogos que têm a sua cara!</p>
+                <button type="submit" class="ir-login" onclick="window.location.href='login.html'">Já tenho conta!</button>
+            </div>
+            <div class="cadastro-container">
+                <div class="cadastro-titulo">Crie sua conta</div>
+                <form class="cadastro-form">
+
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required>
+                    <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Data de Nascimento" required>
+                    <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                    <input type="password" id="senha2" name="senha2" placeholder="Confirme a Senha" required>
+                    <button type="submit" class="cadastro-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
