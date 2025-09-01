@@ -82,6 +82,16 @@ body {
 .cadastro-container form input:hover{
     background-color: rgb(53, 53, 73);
 }
+
+.form-group input:focus {
+   color: #d0d0e0;
+}
+.cadastro-titulo{
+    color: #d0d0e0;
+    font-size: 20px; 
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 .cadastro-container button{
     margin-top: 10px;
     background-color: #363647;
@@ -93,17 +103,6 @@ body {
 }
 .cadastro-container button:hover {
   background-color: #464658; /* cor diferente */
-}
-
-
-.form-group input:focus {
-   color: #d0d0e0;
-}
-.cadastro-titulo{
-    color: #d0d0e0;
-    font-size: 20px; 
-    font-weight: bold;
-    margin-bottom: 20px;
 }
 
 

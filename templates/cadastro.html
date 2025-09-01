@@ -3,6 +3,7 @@
         <title>Cadastro</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/static/cadastro.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
@@ -11,10 +12,14 @@
             <div class="logo-container">
                 <div class="logo">GaStore</div>
                 <p>Jogue os melhores jogos que têm a sua cara!</p>
-                <button type="submit" class="ir-login" onclick="window.location.href='login.html'">Já tenho conta!</button>
+                <a href="login.html" class="ir-login"> 
+                    Já tenho conta!
+                </a>
             </div>
             <div class="cadastro-container">
-                <div class="cadastro-titulo">Crie sua conta</div>
+                <div class="cadastro-titulo">
+                    <i class="fa-solid fa-user-check"></i> Crie sua conta
+                </div>
                 <form class="cadastro-form">
 
                     <input type="text" id="nome" name="nome" placeholder="Nome" required>

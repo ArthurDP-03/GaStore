@@ -3,6 +3,7 @@
         <title>Login</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/static/login.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     </head>
@@ -11,10 +12,13 @@
             <div class="logo-container">
                 <div class="logo">GaStore</div>
                 <p>Jogue os melhores jogos que têm a sua cara!</p>
-                <button type="submit" class="ir-cadastro" onclick="window.location.href='cadastro.html'">Quero me cadastrar!</button>
+                <a href="cadastro.html" class="ir-cadastro"> 
+                    <i class="fa-solid fa-user-check"></i> Quero me cadastrar!
+                </a>
             </div>
             <div class="login-container">
-                <div class="login-titulo">Entre na sua conta</div>
+                <div class="login-titulo">
+                    Entre na sua conta</div>
                 <form class="login-form">
                     <input type="email" id="email" name="email" placeholder="Email" required>
                     <input type="password" id="senha" name="senha" placeholder="Senha" required>
