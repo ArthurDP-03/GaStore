@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Adote um Amigo</title>
+    
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="form-page-body">
+
+    <div class="form-container">
+        <h2>Faça o seu cadastro!</h2>
+        
+        <form>
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="nome" name="nome" placeholder="Nome" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-calendar-days"></i>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
+            </div>
+
+            <div class="buttons-group">
+                <button type="submit" class="btn">
+                    <i class="fa-solid fa-plus-circle"></i> Cadastrar
+                </button>
+                <a href="../index.html" class="back-link">Voltar</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
