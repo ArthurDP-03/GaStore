@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+    
+        </style>
+    </head>
+    <body>
+        <input id="i1" type="text">
+        <input id="i2" type="text">
+        <button onclick="somar()">SOMAR</button>
+        <input id="i3">
+        <button onclick="deletar()">deletar</button>
+        <script>
+            function somar() {
+                let valor1 = document.getElementById("i1").value;
+                let valor2 = document.getElementById("i2").value;
+                valor1 = parseInt(valor1);
+                valor2 = parseInt(valor2);
+                let resultado = valor1 + valor2;
+                document.querySelector("#i3").value = resultado
+                window.alert(resultado);
+            }
+            function deletar() {
+                var input = document.querySelectorAll("input")
+                input.value = "";
+            }
+        </script>
+    </body>
+</html>
