@@ -9,78 +9,152 @@
     <body>
         <div class="cal1">
             <div class="soma">
-                <input id="i1" type="text">
-                <input id="i2" type="text">
-                <button onclick="somar()">+</button>
+                <input class="n1" type="text">
+                <input class="n2" type="text">
+                <button class="btn-somar">+</button>
                 =
-                <input id="i3">
-                <button id="limpar" onclick="limpar('soma')">LIMPAR</button>
+                <input class="resultado" readonly>
+                <button class="btn-limpar">LIMPAR</button>
             </div>
             <div class="subtracao">
-                <input id="i1" type="text">
-                <input id="i2" type="text">
-                <button onclick="subtrair()">-</button>
+                <input class="n1" type="text">
+                <input class="n2" type="text">
+                <button class="btn-subtrair">-</button>
                 =
-                <input id="i3">
-                <button id="limpar" onclick="limpar('subtracao')">LIMPAR</button>
+                <input class="resultado" readonly>
+                <button class="btn-limpar">LIMPAR</button>
             </div>
             <div class="multiplicacao">
-                <input id="i1" type="text">
-                <input id="i2" type="text">
-                <button onclick="multiplicar()">*</button>
+                <input class="n1" type="text">
+                <input class="n2" type="text">
+                <button class="btn-multiplicar">*</button>
                 =
-                <input id="i3">
-                <button id="limpar" onclick="limpar('multiplicacao')">LIMPAR</button>
+                <input class="resultado" readonly>
+                <button class="btn-limpar">LIMPAR</button>
             </div>
             <div class="divisao">
-                <input id="i1" type="text">
-                <input id="i2" type="text">
-                <button onclick="dividir()">/</button>
+                <input class="n1" type="text">
+                <input class="n2" type="text">
+                <button class="btn-dividir">/</button>
                 =
-                <input id="i3">
-                <button id="limpar" onclick="limpar('divisao')">LIMPAR</button>
+                <input class="resultado" readonly>
+                <button class="btn-limpar">LIMPAR</button>
             </div>
         </div>
+
         <script>
-            function somar() {
-                var n1 = parseFloat(document.querySelector('.soma #i1').value);
-                var n2 = parseFloat(document.querySelector('.soma #i2').value);
-                var resultado = n1 + n2;
-                document.querySelector('.soma #i3').value = resultado;
+            // Função genérica de cálculo
+            function calcular(operacao, container) {
+
+                const n1Str = container.querySelector(".n1").value.trim();
+                const n2Str = container.querySelector(".n2").value.trim();
+
+                // Tratando entrada de valor IsNull
+                if (n1Str === "" || n2Str === "") {
+                    container.querySelector(".resultado").value = "Entrada inválida";
+                    return;
+                }
+
+                const n1 = parseFloat(n1Str);
+                const n2 = parseFloat(n2Str);
+
+                // Se não for número (ex: digitou "abc"), retorna erro
+                if (isNaN(n1) || isNaN(n2)) {
+                    container.querySelector(".resultado").value = "Não é número";
+                    return;
+                }
+
+                let resultado = 0;
+
+                switch (operacao) {
+                    case "soma": 
+                        resultado = n1 + n2; 
+                        break;
+                    case "subtracao": 
+                        resultado = n1 - n2; 
+                        break;
+                    case "multiplicacao": 
+                        resultado = n1 * n2; 
+                        break;
+                    case "divisao": 
+                        resultado = n2 !== 0 ? n1 / n2 : "Divisão por 0"; 
+                        break;
+                }
+
+                // Mostra o resultado
+                container.querySelector(".resultado").value = resultado;
             }
 
-            function subtrair() {
-                var n1 = parseFloat(document.querySelector('.subtracao #i1').value);
-                var n2 = parseFloat(document.querySelector('.subtracao #i2').value);
-                var resultado = n1 - n2;
-                document.querySelector('.subtracao #i3').value = resultado;
+            // Função de limpar
+            function limpar(container) {
+                container.querySelector(".n1").value = "";
+                container.querySelector(".n2").value = "";
+                container.querySelector(".resultado").value = "";
             }
 
-            function multiplicar() {
-                var n1 = parseFloat(document.querySelector('.multiplicacao #i1').value);
-                var n2 = parseFloat(document.querySelector('.multiplicacao #i2').value);
-                var resultado = n1 * n2;
-                document.querySelector('.multiplicacao #i3').value = resultado;
-            }
+            // Eventos de cada operação
+            // Closest detecta o conteiner para a função pegar os inputs daquele container
+            document.querySelector(".btn-somar")
+            .addEventListener("click", () => calcular("soma", document.querySelector(".soma")));
 
-            function dividir() {
-                var n1 = parseFloat(document.querySelector('.divisao #i1').value);
-                var n2 = parseFloat(document.querySelector('.divisao #i2').value);
-                var resultado = n1 / n2;
-                document.querySelector('.divisao #i3').value = resultado;
-            }
+            document.querySelector(".btn-subtrair")
+            .addEventListener("click", () => calcular("subtracao", document.querySelector(".subtracao")));
 
-            function limpar(operacao) {
-                var i1 = document.querySelector(`.${operacao} #i1`);
-                var i2 = document.querySelector(`.${operacao} #i2`);
-                var i3 = document.querySelector(`.${operacao} #i3`);
-                i1.value = '';
-                i2.value = '';
-                i3.value = '';
-            }
+            document.querySelector(".btn-multiplicar")
+            .addEventListener("click", () => calcular("multiplicacao", document.querySelector(".multiplicacao")));
+
+            document.querySelector(".btn-dividir")
+            .addEventListener("click", () => calcular("divisao", document.querySelector(".divisao")));
+
+            // Eventos de limpar
+            document.querySelectorAll(".btn-limpar").forEach(btn => {
+                btn.addEventListener("click", () => limpar(btn.closest("div")));
+            });
         </script>
-        <div class="cal2">
 
+        <div class="cal2">
+            <div class="visor">
+                <input type="text">
+            </div>
+            <div class="botoes">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>/</button>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>*</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>-</button>
+                <button>0</button>
+                <button>=</button>
+                <button>+</button>
+                <button>CA</button>
+            </div>
         </div>
+        <script class="cal2">
+            // Funções para manipular os botões da calculadora
+            const botoes = document.querySelectorAll('.cal2 .botoes button');
+            const visor = document.querySelector('.cal2 .visor input');
+            // Adiciona eventos de clique a cada botão
+            botoes.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    const valor = botao.textContent;
+
+                    if (valor === '=') {
+                        visor.value = eval(visor.value); //Usando EVA pq pode
+                    } 
+                    else if (valor === 'CA') {
+                        visor.value = '';
+                    }
+                    else {
+                        visor.value += valor;
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
