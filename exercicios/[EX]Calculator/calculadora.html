@@ -93,7 +93,6 @@
             }
 
             // Eventos de cada operação
-            // Closest detecta o conteiner para a função pegar os inputs daquele container
             document.querySelector(".btn-somar")
             .addEventListener("click", () => calcular("soma", document.querySelector(".soma")));
 
@@ -107,6 +106,7 @@
             .addEventListener("click", () => calcular("divisao", document.querySelector(".divisao")));
 
             // Eventos de limpar
+            // Closest detecta o conteiner para a função pegar os inputs daquele container
             document.querySelectorAll(".btn-limpar").forEach(btn => {
                 btn.addEventListener("click", () => limpar(btn.closest("div")));
             });
