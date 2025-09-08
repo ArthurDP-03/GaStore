@@ -7,25 +7,80 @@
         </style>
     </head>
     <body>
-        <input id="i1" type="text">
-        <input id="i2" type="text">
-        <button onclick="somar()">SOMAR</button>
-        <input id="i3">
-        <button onclick="deletar()">deletar</button>
+        <div class="cal1">
+            <div class="soma">
+                <input id="i1" type="text">
+                <input id="i2" type="text">
+                <button onclick="somar()">+</button>
+                =
+                <input id="i3">
+                <button id="limpar" onclick="limpar('soma')">LIMPAR</button>
+            </div>
+            <div class="subtracao">
+                <input id="i1" type="text">
+                <input id="i2" type="text">
+                <button onclick="subtrair()">-</button>
+                =
+                <input id="i3">
+                <button id="limpar" onclick="limpar('subtracao')">LIMPAR</button>
+            </div>
+            <div class="multiplicacao">
+                <input id="i1" type="text">
+                <input id="i2" type="text">
+                <button onclick="multiplicar()">*</button>
+                =
+                <input id="i3">
+                <button id="limpar" onclick="limpar('multiplicacao')">LIMPAR</button>
+            </div>
+            <div class="divisao">
+                <input id="i1" type="text">
+                <input id="i2" type="text">
+                <button onclick="dividir()">/</button>
+                =
+                <input id="i3">
+                <button id="limpar" onclick="limpar('divisao')">LIMPAR</button>
+            </div>
+        </div>
         <script>
             function somar() {
-                let valor1 = document.getElementById("i1").value;
-                let valor2 = document.getElementById("i2").value;
-                valor1 = parseInt(valor1);
-                valor2 = parseInt(valor2);
-                let resultado = valor1 + valor2;
-                document.querySelector("#i3").value = resultado
-                window.alert(resultado);
+                var n1 = parseFloat(document.querySelector('.soma #i1').value);
+                var n2 = parseFloat(document.querySelector('.soma #i2').value);
+                var resultado = n1 + n2;
+                document.querySelector('.soma #i3').value = resultado;
             }
-            function deletar() {
-                var input = document.querySelectorAll("input")
-                input.value = "";
+
+            function subtrair() {
+                var n1 = parseFloat(document.querySelector('.subtracao #i1').value);
+                var n2 = parseFloat(document.querySelector('.subtracao #i2').value);
+                var resultado = n1 - n2;
+                document.querySelector('.subtracao #i3').value = resultado;
+            }
+
+            function multiplicar() {
+                var n1 = parseFloat(document.querySelector('.multiplicacao #i1').value);
+                var n2 = parseFloat(document.querySelector('.multiplicacao #i2').value);
+                var resultado = n1 * n2;
+                document.querySelector('.multiplicacao #i3').value = resultado;
+            }
+
+            function dividir() {
+                var n1 = parseFloat(document.querySelector('.divisao #i1').value);
+                var n2 = parseFloat(document.querySelector('.divisao #i2').value);
+                var resultado = n1 / n2;
+                document.querySelector('.divisao #i3').value = resultado;
+            }
+
+            function limpar(operacao) {
+                var i1 = document.querySelector(`.${operacao} #i1`);
+                var i2 = document.querySelector(`.${operacao} #i2`);
+                var i3 = document.querySelector(`.${operacao} #i3`);
+                i1.value = '';
+                i2.value = '';
+                i3.value = '';
             }
         </script>
+        <div class="cal2">
+
+        </div>
     </body>
 </html>
