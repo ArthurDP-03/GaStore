@@ -13,6 +13,8 @@
             padding: 20px; 
         }
 
+
+        /*estilos calculadora1*/
         .operation-row{
             display: flex;
             align-items: center;
@@ -21,8 +23,7 @@
             font-weight: bold;
         }
 
-
-        /*estilos para os inputs calculadora1*/
+        /*inputs calculadora1*/
         .cal1 input.n1, .cal1 input.n2 {
             width: 50px;
             padding: 10px; 
@@ -31,14 +32,14 @@
             font-size: 14px;
             text-align: center;
         }
-        /*estilos para input de resultado calculadora1*/
+        /*input de resultado calculadora1*/
         .cal1 input.resultado {
             width: 100px;
             border: 1px solid #CCC;
             font-size: 10px;
             padding: 5px;
         }
-        /* adiciona efeito hover */
+        /*adiciona efeito hover*/
         .cal1 .btn-somar:hover {
             background-color: #EE5000; 
         }
@@ -55,7 +56,7 @@
             transition: background-color 0.3s;
         }
 
-        /* Estilo base para os botões de operador (+, -, *, /) */
+        /*estilo base para os botões de operador (+, -, *, /)*/
         .cal1 .btn-operador {
             width: 37px;  
             height: 37px;
@@ -69,181 +70,192 @@
         .cal1 .btn-limpar:hover {
             background-color: #d97000;
         }
+
+        /*------------------------------------------*/
+        /*estilos calculadora2*/
+        .cal2 {
+            width: 280px;
+            padding: 10px; 
+            border: 5px solid grey; 
+            border-radius: 10px; 
+            background-color: #333; 
+        }
+
+        /*estilo do visor conforme o que foi pedido*/
+        .cal2 .visor input {
+            width: 100%; 
+            height: 60px;
+            margin-bottom: 10px; 
+            font-size: 36px; 
+            text-align: right; 
+            padding: 0 10px; 
+            box-sizing: border-box; 
+            border: none;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+        }
+
+        .cal2 .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /*cria 4 colunas iguais*/
+            gap: 5px; 
+        }
+
+        /*estilo base para todos os botões da calculadora2*/
+        .cal2 .botoes button {
+            padding: 10px; 
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px; 
+            cursor: pointer;
+            transition: background-color 0.2s; /*animacao suave no efeito hover*/
+        }
+
+        /*colorir os botoes*/
+        .btn-num { background-color: #4a4a7f; color: white; }
+        .btn-op, .btn-eq { background-color: #f0e68c; color: #333; }
+        .btn-ca { background-color: #ff4d4d; color: white; }
+
+        /*efeito hover deixando os botoes mais escuros qndo passado mouse*/
+        .btn-num:hover { background-color: #3a3a6f; } 
+        .btn-op:hover, .btn-eq:hover { background-color: #d0c66c; }
+        .btn-ca:hover { background-color: #e63939; } 
         </style>
     </head>
-    <body>
-        <h1>ParteB - Calculadora "linhas com operador"</h1>
-        <div class="cal1">
-            <div class="soma operation-row">
-                <input class="n1" type="text">
-                <input class="n2" type="text">
-                <button class="btn-somar btn-operador">+</button>
-                =
-                <input class="resultado" readonly>
-                <button class="btn-limpar">LIMPAR</button>
-            </div>
-            <div class="subtracao operation-row">
-                <input class="n1" type="text">
-                <input class="n2" type="text">
-                <button class="btn-subtrair btn-operador">-</button>
-                =
-                <input class="resultado" readonly>
-                <button class="btn-limpar">LIMPAR</button>
-            </div>
-            <div class="multiplicacao operation-row">
-                <input class="n1" type="text">
-                <input class="n2" type="text">
-                <button class="btn-multiplicar btn-operador">*</button>
-                =
-                <input class="resultado" readonly>
-                <button class="btn-limpar">LIMPAR</button>
-            </div>
-            <div class="divisao operation-row">
-                <input class="n1" type="text">
-                <input class="n2" type="text">
-                <button class="btn-dividir btn-operador">/</button>
-                =
-                <input class="resultado" readonly>
-                <button class="btn-limpar">LIMPAR</button>
-            </div>
+   <body>
+    <h1>ParteB - Calculadora "linhas com operador"</h1>
+    <div class="cal1">
+        <div class="soma operation-row">
+            <input class="n1" type="text">
+            <input class="n2" type="text">
+            <button class="btn-somar btn-operador">+</button>
+            =
+            <input class="resultado" readonly>
+            <button class="btn-limpar">LIMPAR</button>
         </div>
+        <div class="subtracao operation-row">
+            <input class="n1" type="text">
+            <input class="n2" type="text">
+            <button class="btn-subtrair btn-operador">-</button>
+            =
+            <input class="resultado" readonly>
+            <button class="btn-limpar">LIMPAR</button>
+        </div>
+        <div class="multiplicacao operation-row">
+            <input class="n1" type="text">
+            <input class="n2" type="text">
+            <button class="btn-multiplicar btn-operador">*</button>
+            =
+            <input class="resultado" readonly>
+            <button class="btn-limpar">LIMPAR</button>
+        </div>
+        <div class="divisao operation-row">
+            <input class="n1" type="text">
+            <input class="n2" type="text">
+            <button class="btn-dividir btn-operador">/</button>
+            =
+            <input class="resultado" readonly>
+            <button class="btn-limpar">LIMPAR</button>
+        </div>
+    </div>
 
-        <h1>ParteA - Calculadora Teclado</h1>
-        <div class = "cal2">
-            <div class ="visor2">
-                <input type="text" readonly maxlength="12">
-            </div>
-            <div class ="botoes">
-                <button class="btn-num">1</button>
-                <button class="btn-num">2</button>
-                <button class="btn-num">3</button>
-                <button class="btn-num">4</button>
-                <button class="btn-num">5</button>
-                <button class="btn-num">6</button>
-                <button class="btn-num">7</button>
-                <button class="btn-num">8</button>
-                <button class="btn-num">9</button>
-                <button class="btn-num">+</button>
-                <button class="btn-num">-</button>
-                <button class="btn-num">*</button>
-                <button class="btn-num">/</button>
-                <button class="btn-num">=</button>
-                <button class="btn-num">CA</button>
-            </div>
+    <h1>ParteA - Calculadora Teclado</h1>
+    <div class="cal2">
+        <div class="visor">
+            <input type="text" readonly maxlength="12">
+        </div>
+        <div class="botoes">
+            <button class="btn-num">7</button>
+            <button class="btn-num">8</button>
+            <button class="btn-num">9</button>
+            <button class="btn-op">/</button>
+            <button class="btn-num">4</button>
+            <button class="btn-num">5</button>
+            <button class="btn-num">6</button>
+            <button class="btn-op">*</button>
+            <button class="btn-num">1</button>
+            <button class="btn-num">2</button>
+            <button class="btn-num">3</button>
+            <button class="btn-op">-</button>
+            <button class="btn-num">0</button>
+            <button class="btn-eq">=</button>
+            <button class="btn-op">+</button>
+            <button class="btn-ca">CA</button>
+        </div>
+    </div>
 
-        <script>
-            // Função genérica de cálculo
-            function calcular(operacao, container) {
+    <script>
+        // Função genérica de cálculo
+        function calcular(operacao, container) {
+            const n1Str = container.querySelector(".n1").value.trim();
+            const n2Str = container.querySelector(".n2").value.trim();
 
-                const n1Str = container.querySelector(".n1").value.trim();
-                const n2Str = container.querySelector(".n2").value.trim();
-
-                // Tratando entrada de valor IsNull
-                if (n1Str === "" || n2Str === "") {
-                    container.querySelector(".resultado").value = "Entrada inválida";
-                    return;
-                }
-
-                const n1 = parseFloat(n1Str);
-                const n2 = parseFloat(n2Str);
-
-                // Se não for número (ex: digitou "abc"), retorna erro
-                if (isNaN(n1) || isNaN(n2)) {
-                    container.querySelector(".resultado").value = "Não é número";
-                    return;
-                }
-
-                let resultado = 0;
-
-                switch (operacao) {
-                    case "soma": 
-                        resultado = n1 + n2; 
-                        break;
-                    case "subtracao": 
-                        resultado = n1 - n2; 
-                        break;
-                    case "multiplicacao": 
-                        resultado = n1 * n2; 
-                        break;
-                    case "divisao": 
-                        resultado = n2 !== 0 ? n1 / n2 : "Divisão por 0"; 
-                        break;
-                }
-
-                // Mostra o resultado
-                container.querySelector(".resultado").value = resultado;
+            if (n1Str === "" || n2Str === "") {
+                container.querySelector(".resultado").value = "Entrada inválida";
+                return;
             }
 
-            // Função de limpar
-            function limpar(container) {
-                container.querySelector(".n1").value = "";
-                container.querySelector(".n2").value = "";
-                container.querySelector(".resultado").value = "";
+            const n1 = parseFloat(n1Str);
+            const n2 = parseFloat(n2Str);
+
+            if (isNaN(n1) || isNaN(n2)) {
+                container.querySelector(".resultado").value = "Não é número";
+                return;
             }
 
-            // Eventos de cada operação
-            document.querySelector(".btn-somar")
-            .addEventListener("click", () => calcular("soma", document.querySelector(".soma")));
+            let resultado = 0;
+            switch (operacao) {
+                case "soma": resultado = n1 + n2; break;
+                case "subtracao": resultado = n1 - n2; break;
+                case "multiplicacao": resultado = n1 * n2; break;
+                case "divisao": resultado = n2 !== 0 ? n1 / n2 : "Divisão por 0"; break;
+            }
+            container.querySelector(".resultado").value = resultado;
+        }
 
-            document.querySelector(".btn-subtrair")
-            .addEventListener("click", () => calcular("subtracao", document.querySelector(".subtracao")));
+        // Função de limpar
+        function limpar(container) {
+            container.querySelector(".n1").value = "";
+            container.querySelector(".n2").value = "";
+            container.querySelector(".resultado").value = "";
+        }
 
-            document.querySelector(".btn-multiplicar")
-            .addEventListener("click", () => calcular("multiplicacao", document.querySelector(".multiplicacao")));
+        // Eventos de cada operação
+        document.querySelector(".btn-somar").addEventListener("click", () => calcular("soma", document.querySelector(".soma")));
+        document.querySelector(".btn-subtrair").addEventListener("click", () => calcular("subtracao", document.querySelector(".subtracao")));
+        document.querySelector(".btn-multiplicar").addEventListener("click", () => calcular("multiplicacao", document.querySelector(".multiplicacao")));
+        document.querySelector(".btn-dividir").addEventListener("click", () => calcular("divisao", document.querySelector(".divisao")));
 
-            document.querySelector(".btn-dividir")
-            .addEventListener("click", () => calcular("divisao", document.querySelector(".divisao")));
+        // Eventos de limpar
+        document.querySelectorAll(".btn-limpar").forEach(btn => {
+            btn.addEventListener("click", () => limpar(btn.closest(".operation-row")));
+        });
+    </script>
 
-            // Eventos de limpar
-            // Closest detecta o conteiner para a função pegar os inputs daquele container
-            document.querySelectorAll(".btn-limpar").forEach(btn => {
-                btn.addEventListener("click", () => limpar(btn.closest("div")));
-            });
-        </script>
+    <script>
+        const botoesCal2 = document.querySelectorAll('.cal2 .botoes button');
+        const visorCal2 = document.querySelector('.cal2 .visor input');
 
-        <div class="cal2">
-            <div class="visor">
-                <input type="text">
-            </div>
-            <div class="botoes">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>/</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>*</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>-</button>
-                <button>0</button>
-                <button>=</button>
-                <button>+</button>
-                <button>CA</button>
-            </div>
-        </div>
-        <script class="cal2">
-            // Funções para manipular os botões da calculadora
-            const botoes = document.querySelectorAll('.cal2 .botoes button');
-            const visor = document.querySelector('.cal2 .visor input');
-            // Adiciona eventos de clique a cada botão
-            botoes.forEach(botao => {
-                botao.addEventListener('click', () => {
-                    const valor = botao.textContent;
+        botoesCal2.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const valor = botao.textContent;
 
-                    if (valor === '=') {
-                        visor.value = eval(visor.value); //Usando EVA pq pode
-                    } 
-                    else if (valor === 'CA') {
-                        visor.value = '';
+                if (valor === '=') {
+                    try {
+                        visorCal2.value = eval(visorCal2.value.replace(/[^0-9+\-*/.]/g, ''));
+                    } catch (e) {
+                        visorCal2.value = "Erro";
                     }
-                    else {
-                        visor.value += valor;
+                } else if (valor === 'CA') {
+                    visorCal2.value = '';
+                } else {
+                    if (visorCal2.value.length < 12) {
+                        visorCal2.value += valor;
                     }
-                });
+                }
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>
