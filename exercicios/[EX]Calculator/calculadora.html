@@ -3,40 +3,105 @@
     <head>
         <meta charset="UTF-8">
         <style>
-        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(218, 230, 233);
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 40px; 
+            padding: 20px; 
+        }
+
+        .operation-row{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+
+        /*estilos para os inputs calculadora1*/
+        .cal1 input.n1, .cal1 input.n2 {
+            width: 50px;
+            padding: 10px; 
+            border: 1px solid #CCC; 
+            background-color: #EEE; 
+            font-size: 14px;
+            text-align: center;
+        }
+        /*estilos para input de resultado calculadora1*/
+        .cal1 input.resultado {
+            width: 100px;
+            border: 1px solid #CCC;
+            font-size: 10px;
+            padding: 5px;
+        }
+        /* adiciona efeito hover */
+        .cal1 .btn-somar:hover {
+            background-color: #EE5000; 
+        }
+
+        /*personaliza botão limpar*/
+        .cal1 .btn-limpar {
+            width: 60px; 
+            padding: 10px 5px;
+            border: none;
+            color: white;
+            background-color: #FF8000; 
+            font-size: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Estilo base para os botões de operador (+, -, *, /) */
+        .cal1 .btn-operador {
+            width: 37px;  
+            height: 37px;
+            border: none; 
+            color: white; 
+            background-color: #FF8000; 
+            font-size: 18px;
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+        .cal1 .btn-limpar:hover {
+            background-color: #d97000;
+        }
         </style>
     </head>
     <body>
         <h1>ParteB - Calculadora "linhas com operador"</h1>
         <div class="cal1">
-            <div class="soma">
+            <div class="soma operation-row">
                 <input class="n1" type="text">
                 <input class="n2" type="text">
-                <button class="btn-somar">+</button>
+                <button class="btn-somar btn-operador">+</button>
                 =
                 <input class="resultado" readonly>
                 <button class="btn-limpar">LIMPAR</button>
             </div>
-            <div class="subtracao">
+            <div class="subtracao operation-row">
                 <input class="n1" type="text">
                 <input class="n2" type="text">
-                <button class="btn-subtrair">-</button>
+                <button class="btn-subtrair btn-operador">-</button>
                 =
                 <input class="resultado" readonly>
                 <button class="btn-limpar">LIMPAR</button>
             </div>
-            <div class="multiplicacao">
+            <div class="multiplicacao operation-row">
                 <input class="n1" type="text">
                 <input class="n2" type="text">
-                <button class="btn-multiplicar">*</button>
+                <button class="btn-multiplicar btn-operador">*</button>
                 =
                 <input class="resultado" readonly>
                 <button class="btn-limpar">LIMPAR</button>
             </div>
-            <div class="divisao">
+            <div class="divisao operation-row">
                 <input class="n1" type="text">
                 <input class="n2" type="text">
-                <button class="btn-dividir">/</button>
+                <button class="btn-dividir btn-operador">/</button>
                 =
                 <input class="resultado" readonly>
                 <button class="btn-limpar">LIMPAR</button>
