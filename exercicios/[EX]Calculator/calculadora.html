@@ -34,9 +34,8 @@
         }
         /*input de resultado calculadora1*/
         .cal1 input.resultado {
-            width: 100px;
             border: 1px solid #CCC;
-            font-size: 10px;
+            font-size: 14px;
             padding: 5px;
         }
         /*adiciona efeito hover*/
@@ -91,14 +90,17 @@
             padding: 0 10px; 
             box-sizing: border-box; 
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             background-color: #e0e0e0;
+            border: 5px solid grey;
+            
         }
 
         .cal2 .botoes {
             display: grid;
             grid-template-columns: repeat(4, 1fr); /*cria 4 colunas iguais*/
             gap: 5px; 
+            margin: 0 5px;
         }
 
         /*estilo base para todos os botões da calculadora2*/
@@ -110,7 +112,9 @@
             border-radius: 10px; 
             cursor: pointer;
             transition: background-color 0.2s; /*animacao suave no efeito hover*/
+            margin: 5px;
         }
+       
 
         /*colorir os botoes*/
         .btn-num { background-color: #4a4a7f; color: white; }
