@@ -189,12 +189,13 @@
         </div>
     </div>
 
-    <script>
+    <script class="cal1">
         // Função genérica de cálculo
         function calcular(operacao, container) {
-            const n1Str = container.querySelector(".n1").value.trim();
+            const n1Str = container.querySelector(".n1").value.trim();  //trim serve para remover espaços em branco
             const n2Str = container.querySelector(".n2").value.trim();
 
+            // Verifica se os campos estão vazios
             if (n1Str === "" || n2Str === "") {
                 container.querySelector(".resultado").value = "Entrada inválida";
                 return;
@@ -202,7 +203,7 @@
 
             const n1 = parseFloat(n1Str);
             const n2 = parseFloat(n2Str);
-
+            // Se não for número (ex: digitou "abc"), retorna erro
             if (isNaN(n1) || isNaN(n2)) {
                 container.querySelector(".resultado").value = "Não é número";
                 return;
@@ -232,12 +233,13 @@
         document.querySelector(".btn-dividir").addEventListener("click", () => calcular("divisao", document.querySelector(".divisao")));
 
         // Eventos de limpar
+        //Closest faz referência ao elemento pai mais próximo 
         document.querySelectorAll(".btn-limpar").forEach(btn => {
             btn.addEventListener("click", () => limpar(btn.closest(".operation-row")));
         });
     </script>
 
-    <script>
+    <script class="cal2">
         const botoesCal2 = document.querySelectorAll('.cal2 .botoes button');
         const visorCal2 = document.querySelector('.cal2 .visor input');
 
@@ -247,16 +249,14 @@
 
                 if (valor === '=') {
                     try {
-                        visorCal2.value = eval(visorCal2.value.replace(/[^0-9+\-*/.]/g, ''));
+                        visorCal2.value = eval(visorCal2.value.replace(/[^0-9+\-*/.]/g, '')); //tira todos os caractéries que não são válidos
                     } catch (e) {
                         visorCal2.value = "Erro";
                     }
                 } else if (valor === 'CA') {
                     visorCal2.value = '';
                 } else {
-                    if (visorCal2.value.length < 12) {
-                        visorCal2.value += valor;
-                    }
+                    visorCal2.value += valor;
                 }
             });
         });
