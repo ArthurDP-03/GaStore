@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button:hover{
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Oi, clique no botão abaixo</h1>
+    <button>Hehe.</button>
+    <p>__________</p>
+
+    <script>
+        var btn = document.querySelector("button");
+        console.log(btn);
+
+        function acao() {
+            var resposta = document.querySelector('p');
+            resposta.textContent = "AAAAAAAAA";
+
+            var bdy = document.querySelector('body');
+
+            function criarbotao () {
+                var novoelemento = document.createElement('button');
+                novoelemento.textContent = "Oi, novo elemento";
+                novoelemento.style.backgroundColor = "red";
+                bdy.appendChild(novoelemento);
+            }
+            setInterval(criarbotao, 300);
+
+
+        }
+        btn.addEventListener('click', acao);
+    </script>
+
+</body>
+
+</html>
