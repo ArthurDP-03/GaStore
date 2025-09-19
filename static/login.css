@@ -9,6 +9,8 @@ body {
     justify-content: center;
     align-items: center;
 
+
+    
 }
 .container{
     display: flex;
@@ -31,9 +33,9 @@ body {
         -5px 10px 15px rgba(255, 255, 255, 0.534);
     overflow: hidden;
 }
-.logo{
+.logo-container .logo {
     color: #d0d0e0;
-    font-size: 32px; 
+    font-size: 32px;
     font-weight: bold;
 }
 .logo-container {
