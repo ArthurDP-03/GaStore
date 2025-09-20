@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() { // Espera o carregamento completo do DOM
-    const header = document.createElement('header'); // Seleciona o elemento <header>
+    const header = document.createElement('header'); // Cria um header
     const style = document.createElement('style'); // Cria um elemento <style> para os estilos  
     // Adiciona o conteúdo HTML do cabeçalho
     header.innerHTML = `

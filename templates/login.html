@@ -5,10 +5,9 @@
         <link rel="stylesheet" href="/static/login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <script src="../noStatic/menu.js"></script>
     </head>
     <body>
-        <header></header>
         <div class="container">
             <div class="logo-container">
                 <div class="logo">GaStore</div>
@@ -20,13 +19,13 @@
             <div class="login-container">
                 <div class="login-titulo">
                     Entre na sua conta</div>
-                <form class="login-form">
+                <form method="POST" action="/login" class="login-form">
                     <input type="email" id="email" name="email" placeholder="Email" required>
                     <input type="password" id="senha" name="senha" placeholder="Senha" required>
                     <button type="submit" class="login-button">Entrar</button>
                 </form>
             </div>
         </div>
-        <script src="../noStatic/cabecalho.js"></script>
+        
     </body>
 </html>
