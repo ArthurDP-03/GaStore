@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
 </head>
+
 <body>
     <h2>Cadastro de Usuário</h2>
     <form id="formCadastro">
-        <input type="hidden" name="acao" value="cadastro">
         <input type="text" name="user" placeholder="Digite seu nome" required>
         <button type="submit">Cadastrar</button>
     </form>
@@ -17,8 +18,19 @@
         document.getElementById('formCadastro')
             .addEventListener('submit', e => {
                 e.preventDefault();
+                const formData = new FormData(e.target);
+                formData.append('acao', 'cadastrar');
+                
+                fetch('backend.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('resposta').innerText = data.resposta;
+                    });
             });
     </script>
 </body>
-</html>
 
+</html>

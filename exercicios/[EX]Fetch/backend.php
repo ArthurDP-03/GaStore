@@ -9,4 +9,7 @@ if (!file_exists($db)) {
 }
 
 $usuarios = json_decode(file_get_contents($db), true) ?? [];
+
+$user = $_POST["user"] ?? "Usuário inválido";
+$acao = $_POST["acao"] ?? "Ação inválida";
 ?>

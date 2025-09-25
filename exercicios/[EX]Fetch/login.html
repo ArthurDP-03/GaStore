@@ -16,7 +16,17 @@
         document.getElementById('formLogin')
             .addEventListener('submit', e => {
                 e.preventDefault();
+                const formData = new FormData(e.target);
+                formData.append('acao', 'login');
 
+                fetch('backend.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('resposta').innerText = data.resposta;
+                    });
             });
     </script>
 </body>
