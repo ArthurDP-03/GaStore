@@ -9,6 +9,7 @@
 <body>
     <h2>Cadastro de Usuário</h2>
     <form id="formCadastro">
+        <input type="hidden" name="acao" value="cadastrar">
         <input type="text" name="user" placeholder="Digite seu nome" required>
         <button type="submit">Cadastrar</button>
     </form>
@@ -18,18 +19,24 @@
         document.getElementById('formCadastro')
             .addEventListener('submit', e => {
                 e.preventDefault();
-                const formData = new FormData(e.target);
-                formData.append('acao', 'cadastrar');
-                
                 fetch('backend.php', {
                     method: 'POST',
-                    body: formData
-                })
+                    body: new FormData(e.target)})
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById('resposta').innerText = data.resposta;
-                    });
+                    }); 
             });
+       /*** function getUsuarios() {
+            fetch("backend.php?acao=get_usuarios") // backend retorna JSON com array de usuários
+                .then(r => r.json())
+                .then((entrada) => {
+                    var parag = document.querySelector("#resposta");
+                    console.log(entrada);
+                    parag.textContent = entrada; // mostra os usuários separados por vírgula
+                });
+        }
+        getUsuarios(); // chama a função para carregar os usuários ao abrir a página***/
     </script>
 </body>
 
