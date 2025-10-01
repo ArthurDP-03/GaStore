@@ -1,5 +1,5 @@
 -- Criar database
-CREATE DATABASE GaStore;
+CREATE DATABASE IF NOT EXISTS GaStore;
 USE GaStore;
 
 -- Criar tabela de usuários

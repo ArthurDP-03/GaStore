@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício PHP com Banco de Dados</title>
+</head>
+<body>
+    <p>Lista de músicas</p>
+    <p id="resultados">...carregando</p>
+
+    <hr>
+    <form action="api.php" method="POST">
+        <label>Título:</label><input name="titulo">
+        <label>Duração:</label><input name="duracao" type="number">
+        <label>Compositor:</label><input name="compositor">
+        <label>Álbum:</label><input name="album">
+        <button type="submit">Cadastrar música</button>
+    </form>
+    <script>
+        function getDados(){
+            fetch("api.php")
+            .then(r => r.text())
+            .then(d => {
+                let v = document.querySelector("#resultados");
+                v.innerHTML = d;
+            });
+        }
+        getDados();
+        setInterval(getDados, 1000);
+    </script>
+</body>
+</html>
