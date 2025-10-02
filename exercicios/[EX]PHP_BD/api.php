@@ -1,7 +1,7 @@
 <?php
-//Coloca sua senha e sua dataBAse ai Prof! Tamo junto!
-$conn = mysqli_connect("localhost:3306", "root", "", "");
-
+//Coloca sua senha ai Prof! Tamo junto!
+$conn = mysqli_connect("localhost:3306", "root", "", "exerciciophp");
+ 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $r = mysqli_query($conn, "select * from musica;");
     while ($row = mysqli_fetch_assoc($r)) {

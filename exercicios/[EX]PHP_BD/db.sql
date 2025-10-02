@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS exercicioPhp;
-use exercicioPhp;
+CREATE DATABASE IF NOT EXISTS exerciciophp;
+use exerciciophp;
 
 create table musica(
     id_musica INT AUTO_INCREMENT PRIMARY KEY,
