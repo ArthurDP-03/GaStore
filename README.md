@@ -37,7 +37,7 @@ O projeto busca aplicar na prática os conceitos fundamentais da programação w
 
 ## 💡 Projeto Final — GaStore (Em Desenvolvimento)
 
-A **GuyStore** é uma **loja de games online** desenvolvida como projeto final da disciplina.  
+A **GaStore** é uma **loja de games online** desenvolvida como projeto final da disciplina.  
 O site tem como objetivo simular o funcionamento de uma loja virtual, com catálogo de produtos, exibição de informações e integração com banco de dados.
 
 **Principais características:**
