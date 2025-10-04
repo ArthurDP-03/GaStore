@@ -11,7 +11,7 @@ O objetivo deste repositório é documentar a evolução no aprendizado das prin
 Este repositório contém:
 
 - 🧩 **Exercícios práticos** realizados ao longo da disciplina de Programação Web;  
-- 💻 **Projeto final (GuyStore)** — um site de loja de games ainda em desenvolvimento, com integração entre front-end, back-end e banco de dados.
+- 💻 **Projeto final (GaStore)** — um site de loja de games ainda em desenvolvimento, com integração entre front-end, back-end e banco de dados.
 
 O projeto busca aplicar na prática os conceitos fundamentais da programação web moderna, incluindo **estrutura de layout, interatividade, lógica de servidor e persistência de dados**.
 
