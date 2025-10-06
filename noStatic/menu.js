@@ -27,8 +27,10 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
     padding: 15px 40px;
     box-shadow: 0 0 20px #1c1c2b;
     backdrop-filter: blur(8px);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     }
 
