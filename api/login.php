@@ -1,4 +1,12 @@
 <?php
+header('Content-Type: application/json');
+ini_set('display_errors', 0);
+error_reporting(0);
+
+// Inicia a sessão para gerenciar o estado do usuário
+session_start();
+
+
 $resposta = [];
 $conn = mysqli_connect("localhost:3306", "root", "postly", "gastore");
 
@@ -8,7 +16,49 @@ if ($conn->connect_error) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == "GET"){
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    $email = $_POST['email'];
+    $senha = $_POST['senha']; 
+
+    $stmt = $conn->prepare("SELECT id_usuario, nome, email, senha FROM usuario WHERE email = ?");
     
+    if ($stmt === false) {
+        $resposta = ['status' => 'erro', 'mensagem' => 'Erro ao preparar a consulta.'];
+    } else {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            
+            // 2. CORREÇÃO: Comparamos a senha do formulário ($senha) com o hash do banco ($row['senha'])
+            if (password_verify($senha, $row['senha'])) {
+                // Senha correta!
+                $resposta = [
+                    'status' => 'sucesso', 
+                    'mensagem' => "Login bem-sucedido! Bem-vindo(a) {$row['nome']}", 
+                    'nome' => $row['nome']
+                ];
+                $_SESSION['usuario'] = $row['id_usuario'];
+                header("Refresh: 2; URL=painel.php");
+            } else {
+                // Senha incorreta
+                $resposta = ['status' => 'erro', 'mensagem' => 'E-mail ou senha incorretos.'];
+            }
+        } else {
+            // Usuário não encontrado
+            $resposta = ['status' => 'erro', 'mensagem' => 'E-mail ou senha incorretos.'];
+        }
+        $stmt->close();
+    }
+} else {
+    $resposta = ['status' => 'erro', 'mensagem' => 'Método de requisição inválido.'];
 }
+
+$conn->close();
+
+// Garante que uma resposta JSON seja sempre enviada
+echo json_encode($resposta);
 ?>

@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $cpf = $_POST['cpf'];
         $email = $_POST['email'];
         $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-        $stmt_check = $conn->prepare("SELECT id FROM usuario WHERE email = ? OR cpf = ?");
+        
+        $stmt_check = $conn->prepare("SELECT id_usuario FROM usuario WHERE email = ? OR cpf = ?");
         $stmt_check->bind_param("ss", $email, $cpf);
         $stmt_check->execute();
         $result = $stmt_check->get_result();
