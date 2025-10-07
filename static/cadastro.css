@@ -104,6 +104,9 @@ body {
 .cadastro-container button:hover {
   background-color: #464658; /* cor diferente */
 }
+#mensagem {
+    margin: 0;
+}
 
 
 @media (max-width: 900px) {
