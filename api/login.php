@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     'mensagem' => "Login bem-sucedido! Bem-vindo(a) {$row['nome']}", 
                     'nome' => $row['nome']
                 ];
+                // Armazena o ID do usuário na sessão
                 $_SESSION['usuario'] = $row['id_usuario'];
                 header("Refresh: 2; URL=painel.php");
             } else {
