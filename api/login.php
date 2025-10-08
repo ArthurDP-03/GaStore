@@ -35,15 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             
             // 2. CORREÇÃO: Comparamos a senha do formulário ($senha) com o hash do banco ($row['senha'])
             if (password_verify($senha, $row['senha'])) {
+                // Armazena o ID do usuário na sessão
+                $_SESSION['usuario'] = $row['id_usuario'];
+                // Adiciona o nome na sessão
+                $_SESSION['nome'] = $row['nome']; 
                 // Senha correta!
                 $resposta = [
                     'status' => 'sucesso', 
-                    'mensagem' => "Login bem-sucedido! Bem-vindo(a) {$row['nome']}", 
-                    'nome' => $row['nome']
+                    'mensagem' => "Login bem-sucedido! Bem-vindo(a) {$row['nome']}!", 
                 ];
-                // Armazena o ID do usuário na sessão
-                $_SESSION['usuario'] = $row['id_usuario'];
-                header("Refresh: 2; URL=painel.php");
+                
             } else {
                 // Senha incorreta
                 $resposta = ['status' => 'erro', 'mensagem' => 'E-mail ou senha incorretos.'];

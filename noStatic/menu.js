@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
             <button onclick="window.location.href='../templates/sobre.html'">Sobre</button>
             <button onclick="window.location.href='../templates/suporte.html'">Suporte</button>
             <button onclick="window.location.href='../templates/carrinho.html'">Carrinho</button>
-            <button onclick="window.location.href='../templates/perfil.html'">Perfil</button> 
+            <button onclick="window.location.href='../templates/perfil.html'">
+                Perfil: <span id="perfil-nome"></span>
+            </button> 
         </div>
         </div>
 
@@ -88,4 +90,19 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
 
     document.body.appendChild(style); // Adiciona os estilos ao <body>
     document.body.insertBefore(header, document.body.firstChild); // Adiciona o cabeçalho ao <body>
+    fetch('../api/inicio.php', {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'sucesso') {
+                // Exibe o nome do usuário logado
+                document.getElementById('perfil-nome').innerHTML = data.nome;
+            } else {
+                // Exibe mensagem de erro ou redireciona
+                alert(data.mensagem);
+                // window.location.href = '../templates/login.html'; // opcional
+            }
+        });
+
 })

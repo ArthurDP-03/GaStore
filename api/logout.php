@@ -10,7 +10,7 @@ if (isset($_COOKIE[session_name()])) {
         '/'
     );
     echo "Você saiu com sucesso!<br>";
-    echo "<a href='../templates/login_form.html'>Voltar para o login</a>";
+    echo "<a href='../templates/login.html'>Voltar para o login</a>";
 }
 
 

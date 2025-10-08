@@ -24,6 +24,10 @@ document.getElementById('login-form').addEventListener('submit', e => {
             mensagemElemento.style.color = 'green';
             // Limpa o formulário após o sucesso
             e.target.reset(); 
+            // Redireciona para a página inicial após 2 segundos
+            setTimeout(() => {
+                window.location.href = '../templates/inicio.html';
+            }, 2000);
         } else {
             mensagemElemento.style.color = 'red';
         }
