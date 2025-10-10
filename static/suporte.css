@@ -1,7 +1,63 @@
 body {
-margin: 0;
-background: url('../static/imagens/background-login.jpg') no-repeat center center fixed;
-background-size: cover;
-font-family: 'Arial', sans-serif;
-color: #c7c7d2;
+    margin: 0;
+    background: url('../static/imagens/background-login.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    color: #c7c7d2;
+    padding-top: 70px;
+}
+
+.suporte-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.suporte-container h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.suporte-container h3 {
+    font-size: 22px;
+    color: #e0e0e0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.suporte-container h4 {
+    font-size: 18px;
+    color: #c7c7d2;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.suporte-container p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.contato-info a {
+    color: #4dabf7; 
+    text-decoration: none; 
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.contato-info a:hover {
+    color: #ffffff;
+    text-decoration: underline; 
+}
+
+.horario {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 20px;
 }
