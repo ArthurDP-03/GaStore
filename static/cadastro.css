@@ -3,151 +3,123 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     display: flex;
     font-family: Arial, sans-serif;
     color: #c7c7d2;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
 
-.container {
+}
+.container{
     display: flex;
     flex-direction: row;
-    width: 800px;
-    min-height: 450px; 
-    gap: 0;
+    justify-content: center;
+    align-items: stretch;
+    width: 800px; 
+    height: 400px;
+    gap: 20px;
+    
 }
-
-.logo-container, .cadastro-container {
+.logo-container, .cadastro-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
-    background: rgba(12, 12, 22, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 
+        -5px 10px 15px rgba(255, 255, 255, 0.534);
+    overflow: hidden;
 }
-
+.logo{
+    color: #d0d0e0;
+    font-size: 32px; 
+    font-weight: bold;
+}
 .logo-container {
+    background: #1c1c2b;
     flex: 3;
-    border-radius: 20px 0 0 20px;
-    text-align: center;
 }
-
-.logo {
-    color: #ffffff;
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.logo-container p {
+.logo-container p{
     color: #c7c7d2;
-    font-size: 16px;
-    margin-bottom: 30px;
+    font-size: 15px;
+    text-align: center;
+    
 }
-
-.logo-container .ir-login {
-    background-color: transparent;
-    border: 2px solid #28a745;
-    border-radius: 8px;
-    color: #28a745;
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
+.logo-container button{
+    margin-top: 10px;
+    background-color: #363647;
+    border: none;
+    border-radius: 5px;
+    color: #d0d0e0;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    
 }
-
-.logo-container .ir-login:hover {
-    background-color: #28a745;
-    color: #ffffff;
-    transform: scale(1.05);
+.logo-container button:hover {
+  background-color: #464658; /* cor diferente */
 }
-
 .cadastro-container {
-    flex: 2;
-    border-radius: 0 20px 20px 0;
-    border-left: none;
+    background-color: #1c1c2b;
+    flex:2;
+    gap: 10px;
 }
-
-.cadastro-titulo {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 25px;
-}
-
-.cadastro-container form {
+.cadastro-container form{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 15px;
+    align-items: stretch;
+    width: 80%;
+    flex: 0 1 auto;
+    gap: 10px;
 }
-
-.cadastro-container form input {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 12px 15px;
+.cadastro-container form input{
+    background-color: #0a0a14;
+    border: 1px solid #1c1c2b;
+    border-radius: 5px;
+    padding: 5px;
     color: #d0d0e0;
-    font-size: 16px;
-    transition: all 0.3s ease;
+}
+.cadastro-container form input:hover{
+    background-color: rgb(53, 53, 73);
 }
 
-.cadastro-container form input::placeholder {
-    color: #8a8a9e;
+.form-group input:focus {
+   color: #d0d0e0;
 }
-
-.cadastro-container form input:focus {
-    outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.3);
+.cadastro-titulo{
+    color: #d0d0e0;
+    font-size: 20px; 
+    font-weight: bold;
+    margin-bottom: 20px;
 }
-
-.cadastro-container button {
+.cadastro-container button{
     margin-top: 10px;
-    background-color: #28a745;
+    background-color: #363647;
     border: none;
-    border-radius: 8px;
-    color: #ffffff;
-    padding: 12px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border-radius: 5px;
+    color: #d0d0e0;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
 }
-
 .cadastro-container button:hover {
-    filter: brightness(0.9);
-    transform: scale(1.02);
+  background-color: #464658; /* cor diferente */
 }
-
 #mensagem {
-    text-align: center;
-    font-weight: bold;
-    min-height: 20px;
     margin: 0;
 }
 
+
 @media (max-width: 900px) {
     .container {
-        width: 90%;
-        max-width: 400px;
-        height: auto;
+        width: 70%;
+        height: auto; 
         flex-direction: column;
     }
-
     .logo-container {
-        border-radius: 20px 20px 0 0;
-    }
-
-    .cadastro-container {
-        border-radius: 0 0 20px 20px;
+        padding: 40px 20px;
     }
 }
+
+
+
+
