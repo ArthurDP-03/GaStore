@@ -5,3 +5,8 @@ background-size: cover;
 font-family: 'Arial', sans-serif;
 color: #c7c7d2;
 }
+
+button.logout-button{
+    display:flex;
+    margin-top: 80px;
+}
