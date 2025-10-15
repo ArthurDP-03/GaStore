@@ -23,7 +23,8 @@ margin-top: 70px;
     justify-content: center;
     width: 95%;
     height: 100%;
-    object-fit: cover; /* Importante para não distorcer a imagem. 'cover' corta a imagem para caber, 'contain' mostra tudo (pode deixar espaços) e 'fill' estica. */
+    object-fit: cover; 
+    border-radius: 8px;
 }
 
 /* ====== JOGOS ====== */

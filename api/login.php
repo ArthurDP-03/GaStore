@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             
-            // 2. CORREÇÃO: Comparamos a senha do formulário ($senha) com o hash do banco ($row['senha'])
             if (password_verify($senha, $row['senha'])) {
                 // Armazena o ID do usuário na sessão
                 $_SESSION['usuario'] = $row['id_usuario'];
