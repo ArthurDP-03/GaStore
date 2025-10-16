@@ -34,11 +34,11 @@ CREATE TABLE Compra (
 
 -- Criar tabela de itens da compra
 CREATE TABLE ItemCompra (
-    id_item INT AUTO_INCREMENT PRIMARY KEY,
     id_compra INT NOT NULL,
     id_produto INT NOT NULL,
     quantidade INT NOT NULL DEFAULT 1,
     preco_unitario DECIMAL(10,2) NOT NULL,
-    CONSTRAINT fk_itemcompra_compra FOREIGN KEY (id_compra) REFERENCES Compra(id_compra),
+    PRIMARY KEY (id_compra, id_produto),
+    CONSTRAINT fk_itemcompra_compra FOREIGN KEY (id_compra) REFERENCES Compra(id_compra) ON DELETE CASCADE,
     CONSTRAINT fk_itemcompra_produto FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
 ) ENGINE=InnoDB;
