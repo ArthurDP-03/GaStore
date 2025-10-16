@@ -13,6 +13,13 @@ CREATE TABLE Usuario (
     tipo ENUM('cliente','admin') DEFAULT 'cliente'
 ) ENGINE=InnoDB;
 
+-- Criar tabela de categorias
+CREATE TABLE Categoria (
+    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    descricao TEXT
+) ENGINE=InnoDB;
+
 -- Criar tabela de produtos
 CREATE TABLE Produto (
     id_produto INT AUTO_INCREMENT PRIMARY KEY,
@@ -20,7 +27,9 @@ CREATE TABLE Produto (
     capa VARCHAR(255),
     preco_atual DECIMAL(10,2) NOT NULL,
     descricao TEXT,
-    tipo ENUM('jogo','outro') DEFAULT 'jogo'
+    tipo ENUM('jogo','outro') DEFAULT 'jogo',
+    id_categoria INT,  -- relacionamento com Categoria
+    CONSTRAINT fk_produto_categoria FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
 ) ENGINE=InnoDB;
 
 -- Criar tabela de compras
