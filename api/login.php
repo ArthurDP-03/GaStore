@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             
             if (password_verify($senha, $row['senha'])) {
                 // Armazena o ID do usuário na sessão
-                $_SESSION['usuario'] = $row['id_usuario'];
+                $_SESSION['id_usuario'] = $row['id_usuario'];
                 // Adiciona o nome na sessão
                 $_SESSION['nome'] = $row['nome']; 
                 // Senha correta!

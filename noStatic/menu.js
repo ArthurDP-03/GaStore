@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
 
     document.body.appendChild(style); // Adiciona os estilos ao <body>
     document.body.insertBefore(header, document.body.firstChild); // Adiciona o cabeçalho ao <body>
-    fetch('../api/inicio.php', {
+    fetch('../api/menu.php', {
         method: 'GET',
     })
         .then(response => response.json())

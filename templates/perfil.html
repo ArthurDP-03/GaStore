@@ -13,38 +13,38 @@
 
     <div class="perfil">
       Meu Perfil
-
       <form id="perfilForm" method="POST" class="perfil-form">
         <div>
+          <label>ID:</label>
+          <span class="perfil-info" id="idDisplay"></span>
+        </div>
+
+        <div>
           <label>Nome:</label>
-          <span id="nomeDisplay"></span>
-          <input type="text" id="nomeInput" style="display:none;" />
+          <span class="perfil-info" id="nomeDisplay"></span>
+          <input type="text" id="nomeInput" name="nome" style="display:none;" />
         </div>
 
         <div>
           <label>Email:</label>
-          <span id="emailDisplay"></span>
-          <input type="email" id="emailInput" style="display:none;" />
+          <span class="perfil-info" id="emailDisplay"></span>
+          <input type="email" id="emailInput" name="email" style="display:none;" />
         </div>
 
         <div>
-          <label>Telefone:</label>
-          <span id="telefoneDisplay"></span>
-          <input type="text" id="telefoneInput" style="display:none;" />
-        </div>
-        <div>
           <label id="senhaDisplay" style="display:none;">Senha:</label>
-          <input type="password" id="senhaInput" style="display:none;" />
+          <input type="password" id="senhaInput" name="senha" style="display:none;" />
         </div>
       </form>
 
       <button id="editarBtn">Editar</button>
       <button id="salvarBtn" style="display:none;">Salvar</button>
+      <button id="cancelarBtn" style="display:none;">Cancelar</button>
+      <p id="mensagem"></p>
     </div>
 
     <div class="comprasUsuario">
-      Minhas Compras
-      <div>
+      Minhas Compras<div>
         <table>
           <thead>
             <tr>
