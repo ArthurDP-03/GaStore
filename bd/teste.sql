@@ -23,16 +23,6 @@ CREATE TABLE Produto (
     tipo ENUM('jogo','outro') DEFAULT 'jogo'
 ) ENGINE=InnoDB;
 
--- Criar tabela de carrinho
-CREATE TABLE Carrinho (
-    id_carrinho INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    id_produto INT NOT NULL,
-    quantidade INT NOT NULL DEFAULT 1,
-    CONSTRAINT fk_carrinho_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    CONSTRAINT fk_carrinho_produto FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
-) ENGINE=InnoDB;
-
 -- Criar tabela de compras
 CREATE TABLE Compra (
     id_compra INT AUTO_INCREMENT PRIMARY KEY,
