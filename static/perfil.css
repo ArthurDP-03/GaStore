@@ -21,7 +21,6 @@ button.logout-button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 20px;
-  transition: background 0.3s, transform 0.3s;
 }
 
 button.logout-button:hover {
