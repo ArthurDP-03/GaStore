@@ -1,6 +1,7 @@
 const editarBtn = document.getElementById('editarBtn');
 const salvarBtn = document.getElementById('salvarBtn');
 const cancelarBtn = document.getElementById('cancelarBtn');
+const deletarBtn = document.getElementById('deletarBtn');
 
 // Carrega os dados do perfil ao carregar a página ---------------------------------
 fetch('../api/perfil.php', {
@@ -33,6 +34,7 @@ cancelarBtn.addEventListener('click', e => {
     document.getElementById('senhaDisplay').style.display = 'none';
 
     editarBtn.style.display = 'inline-block';
+    deletarBtn.style.display = 'inline-block';
     salvarBtn.style.display = 'none';
     cancelarBtn.style.display = 'none';
 
@@ -48,6 +50,7 @@ editarBtn.addEventListener('click', e => {
     document.getElementById('senhaDisplay').style.display = 'block';
 
     editarBtn.style.display = 'none';
+    deletarBtn.style.display = 'none';
     salvarBtn.style.display = 'inline-block';
     cancelarBtn.style.display = 'inline-block';
 });
@@ -134,4 +137,23 @@ document.querySelector('.logout-button').addEventListener('click', e => {
             }
 
         });
+});
+
+// Deletar conta-----------------------------------------------------------
+deletarBtn.addEventListener('click', e => {
+    e.preventDefault();
+    if (confirm("Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.")) {
+        fetch('../api/deletar_perfil.php', {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('mensagem').innerHTML = data.mensagem;
+                if (data.status === 'sucesso') {
+                    setTimeout(() => {
+                        window.location.href = '../templates/login.html';
+                    }, 2000); // Dá tempo de mostrar a mensagem antes de redirecionar
+                }
+            });
+    }
 });

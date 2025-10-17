@@ -11,19 +11,51 @@ body {
   align-items: center;     
   height: 100vh;           
 }
+/* Container principal */
+.perfilContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
 
-button.logout-button {
+/* Estilo para a seção de dados do usuário */
+.dadosUsuario {
+  background-color: rgba(54, 54, 71, 0.85); 
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Título do perfil */
+.perfil-titulo{
+    color: #d0d0e0;
+    font-size: 20px; 
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Estilo para a seção de compras do usuário */
+.comprasUsuario {
+  background-color: rgba(54, 54, 71, 0.85); 
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+} 
+
+/* Estilo do formulário */
+button.perfil-button {
   margin-top: 20px; 
-  padding: 16px 40px;
+  padding: 8px 20px;
   background-color: #363647;
   color: #d0d0e0;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
 }
 
-button.logout-button:hover {
+button.perfil-button:hover {
   background-color: #464658;
 }
 
