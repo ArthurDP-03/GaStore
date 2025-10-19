@@ -18,6 +18,11 @@ body {
   align-items: center;
   gap: 40px;
 }
+.imagemperfil{
+  width: 100px;
+  height: 100px;
+  padding-right: 350px;
+}
 
 /* Estilo para a seção de dados do usuário */
 .dadosUsuario {
@@ -25,6 +30,7 @@ body {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow:-5px 10px 15px rgba(255, 255, 255, 0.534);
 }
 
 /* Título do perfil */
@@ -41,6 +47,7 @@ body {
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow:-5px 10px 15px rgba(255, 255, 255, 0.534);
 } 
 
 /* Estilo do formulário */
@@ -53,6 +60,7 @@ button.perfil-button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  display: flex;
 }
 
 button.perfil-button:hover {
@@ -65,3 +73,4 @@ button.perfil-button:hover {
   text-align: center;
   color: #d0d0e0; 
 }
+
