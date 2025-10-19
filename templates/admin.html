@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Admin</title>
+    <link rel="stylesheet" href="../static/admin.css">
+  </head>
+  
+  <body>
+    <div class="container">
+      <header>
+        <h1>Painel do Administrador</h1>
+        <div class="controls">
+          <button id="add-product-btn">Adicionar Produto</button>
+          <button id="logout-btn">Deslogar</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="admin-info">
+          <h2>Meus Dados</h2>
+          <p>
+            <strong>ID:</strong> <span id="admin-id">...</span>
+          </p>
+          <p>
+            <strong>Nome:</strong> <span id="admin-nome">...</span>
+          </p>
+          <p>
+            <strong>Email:</strong> <span id="admin-email">...</span>
+          </p>
+        </section>
+
+        <section class="product-list">
+          <h2>Produtos Listados</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Capa</th>
+                <th>Título</th>
+                <th>Preço</th>
+              </tr>
+            </thead>
+            <tbody id="product-list-body">
+              <tr>
+                <td colspan="4">Carregando produtos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+    <script src="../noStatic/admin.js" defer></script>
+  </body>
+</html>
