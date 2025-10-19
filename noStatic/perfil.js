@@ -31,7 +31,6 @@ cancelarBtn.addEventListener('click', e => {
     
     document.querySelectorAll('span.perfil-info').forEach(span => span.style.display = 'block');
     document.querySelectorAll('input').forEach(input => input.style.display = 'none');
-    document.getElementById('senhaDisplay').style.display = 'none';
 
     editarBtn.style.display = 'inline-block';
     deletarBtn.style.display = 'inline-block';
@@ -47,7 +46,6 @@ editarBtn.addEventListener('click', e => {
     // Esconde os spans, mostra os inputs
     document.querySelectorAll('span.perfil-info').forEach(span => span.style.display = 'none');
     document.querySelectorAll('input').forEach(input => input.style.display = 'block');
-    document.getElementById('senhaDisplay').style.display = 'block';
 
     editarBtn.style.display = 'none';
     deletarBtn.style.display = 'none';
@@ -56,12 +54,12 @@ editarBtn.addEventListener('click', e => {
 });
 
 // Manipulação do envio do formulário ----------------------------------------------
-salvarBtn.addEventListener('click', e => {
+document.getElementById('perfilForm').addEventListener('submit', e => { 
     e.preventDefault();
 
-    const formElement = document.getElementById('perfilForm')
     const mensagemElemento = document.getElementById('mensagem');
-    const dadosFormulario = new FormData(formElement);
+    const dadosFormulario = new FormData(e.target);
+
 
     fetch('../api/perfil.php', {
         method: 'POST',
@@ -82,22 +80,11 @@ salvarBtn.addEventListener('click', e => {
             if (data.status === 'sucesso') {
                 mensagemElemento.style.color = 'green';
                 // Limpa o formulário após o sucesso
-                formElement.reset();
-
-                // Atualiza os spans com os novos valores
-                document.getElementById('nomeDisplay').innerText = data.nome;
-                document.getElementById('emailDisplay').innerText = data.email;
-                document.getElementById('senhaDisplay').innerText = data.senha;
-
+                e.target.reset();
                 mensagemElemento.innerText = data.mensagem + " Recarregando a página...";
-                // Volta para modo leitura
-                document.querySelectorAll('span.perfil-info').forEach(span => span.style.display = 'block');
-                document.querySelectorAll('input').forEach(input => input.style.display = 'none');
-                document.getElementById('senhaDisplay').style.display = 'none';
-
                 setTimeout(() => {
                     window.location.reload();
-                }, 1500); // Dá tempo de mostrar a mensagem antes de recarregar a página
+                }, 2500); // Dá tempo de mostrar a mensagem antes de recarregar a página
 
 
             } else {
@@ -119,7 +106,7 @@ salvarBtn.addEventListener('click', e => {
 
 
 //Logout-----------------------------------------------------------------
-document.querySelector('.logout-button').addEventListener('click', e => {
+document.getElementById('logoutBtn').addEventListener('click', e => {
     e.preventDefault();
 
     fetch('../api/logout.php', {

@@ -1,84 +1,245 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>GaStore - Perfil</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/perfil.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  </head>
 
-<head>
-  <title>GaStore - Perfil</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../static/perfil.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  
-</head>
+  <body>
+    <script src="../noStatic/menu.js"></script>
 
-<body>
-  <script src="../noStatic/menu.js"></script>
+    <h1>Meu Perfil</h1>
+    <div class="perfilContainer">
+      <div class="dadosUsuario">
+        <div class="dados-titulo">Meus dados</div>
 
-  <h1>Seja bem-vindo, </h1>
-  <div class="perfilContainer">
-    <div class="dadosUsuario">
-      <img class="imagemperfil" src="../static/imagens/perfil_padrao.jpg" alt="ImagemPerfil">
-      <div class="perfil-titulo">
-        Meu Perfil
+        <form id="perfilForm" method="POST" class="perfil-form">
+          <div class="divForm">
+            <label>ID: </label>
+            <span class="perfil-info" id="idDisplay"></span>
+          </div>
+
+          <div class="divForm">
+            <label>Nome: </label>
+            <span class="perfil-info" id="nomeDisplay"></span>
+            <input type="text" id="nomeInput" name="nome" style="display:none;" required />
+          </div>
+
+          <div class="divForm">
+            <label>Email: </label>
+            <span class="perfil-info" id="emailDisplay"></span>
+            <input type="email" id="emailInput" name="email" style="display:none;" required />
+          </div>
+
+          <div class="divForm">
+            <label>Senha: </label>
+            <input type="password" id="senhaInput" name="senha" style="display:none;" required />
+          </div>
+          <button type="submit" id="salvarBtn" class="perfil-button" style="display:none;">Salvar</button>
+        </form>
+        
+        <button type="button" id="editarBtn" class="perfil-button">Editar <span class="material-symbols-outlined">edit</span></button>
+
+        <button type="button" id="deletarBtn" class="perfil-button">Deletar <span class="material-symbols-outlined">delete</span></button>
+
+        <button type="button" id="cancelarBtn" class="perfil-button" style="display:none;">Cancelar</button>
+
+        <button type="button" id="logoutBtn" class="perfil-button">Logout <span class="material-symbols-outlined">logout</span></button>
+
+        <p id="mensagem"></p>
+        <p id="mensagem-logout"></p>
       </div>
-      <form id="perfilForm" method="POST" class="perfil-form">
-        <div>
-          <label>ID:</label>
-          <span class="perfil-info" id="idDisplay"></span>
+
+      <div class="comprasUsuario">
+        Minhas Compras<div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <th>ID Compra</th>
+                <th>Data</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="corpo-tabela-compras">
+              <!-- As compras serão inseridas aqui via JavaScript -->
+            </tbody>
+          </table>
         </div>
-
-        <div>
-          <label>Nome:</label>
-          <span class="perfil-info" id="nomeDisplay"></span>
-          <input type="text" id="nomeInput" name="nome" style="display:none;" />
-        </div>
-
-        <div>
-          <label>Email:</label>
-          <span class="perfil-info" id="emailDisplay"></span>
-          <input type="email" id="emailInput" name="email" style="display:none;" />
-        </div>
-
-        <div>
-          <label id="senhaDisplay" style="display:none;">Senha:</label>
-          <input type="password" id="senhaInput" name="senha" style="display:none;" />
-        </div>
-      </form>
-
-      <button id="editarBtn" class="perfil-button">Editar
-        <span class="material-symbols-outlined">edit</span>
-      </button>
-
-      <button id="deletarBtn" class="perfil-button">Deletar
-        <span class="material-symbols-outlined">delete</span>
-      </button>
-      <button id="salvarBtn" class="perfil-button" style="display:none;">Salvar</button>
-      <button id="cancelarBtn" class="perfil-button" style="display:none;">Cancelar</button>
-      <p id="mensagem"></p>
-      <button type="submit" class="perfil-button">Logout
-        <span class="material-symbols-outlined">logout</span>
-      </button>
-      <p id="mensagem-logout"></p>
+      </div>
     </div>
 
-    <div class="comprasUsuario">
-      Minhas Compras<div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID Compra</th>
-              <th>Data</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody id="corpo-tabela-compras">
-            <!-- As compras serão inseridas aqui via JavaScript -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <script src="../noStatic/perfil.js" defer></script>
-</body>
-
+    <script src="../noStatic/perfil.js" defer></script>
+  </body>
 </html>

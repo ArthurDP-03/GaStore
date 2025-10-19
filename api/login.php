@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha']; 
 
-    $stmt = $conn->prepare("SELECT id_usuario, nome, email, senha FROM usuario WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id_usuario, nome, email, senha, tipo FROM usuario WHERE email = ?");
     
     if ($stmt === false) {
         $resposta = ['status' => 'erro', 'mensagem' => 'Erro ao preparar a consulta.'];
@@ -37,11 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 // Armazena o ID do usuário na sessão
                 $_SESSION['id_usuario'] = $row['id_usuario'];
                 // Adiciona o nome na sessão
-                $_SESSION['nome'] = $row['nome']; 
+                $_SESSION['nome'] = $row['nome'];
+                //Adciona o tipo de sessão
+                $_SESSION['tipo'] = $row['tipo'];
                 // Senha correta!
                 $resposta = [
                     'status' => 'sucesso', 
-                    'mensagem' => "Login bem-sucedido! Bem-vindo(a) {$row['nome']}!", 
+                    'tipo' => $row['tipo'],
+                    'mensagem' => "Login bem-sucedido! Bem-vindo(a) {$row['nome']}, {$row['tipo']}!", 
                 ];
                 
             } else {

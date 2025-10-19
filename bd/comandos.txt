@@ -1,0 +1,20 @@
+INSERT INTO
+    usuario (nome, cpf, email, senha, dtnasc, tipo)
+VALUES
+    (
+        'Administrador',
+        '123.456.789-00',
+        'admin@email.com',
+        -- Este hash corresponde à senha: "professor10"
+        '$2y$10$xytybADZecNaatwoFvlzEuHv3jfQP9SQnKR2K.pUa3mAlxmmpbFRO,
+        'admin'
+    );
+
+CRIAR NA HORA:
+
+    'Fulano de Tal', 
+    '111.222.333-44', 
+    'fulano@email.com', 
+    'SenhaSegura456',  
+    '1995-05-15', 
+    'cliente'  

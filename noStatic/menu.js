@@ -100,8 +100,12 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
             } else {
                 // Exibe mensagem de erro ou redireciona
                 alert(data.mensagem);
-                // window.location.href = '../templates/login.html'; // opcional
+                setTimeout(() => {
+                    window.location.href = '../templates/login.html';
+                }, 2000);
             }
+        
         });
+    });
 
-})
+
