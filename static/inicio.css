@@ -1,13 +1,17 @@
 body {
-margin: 0;
-background: url('../static/imagens/background-login.jpg') no-repeat center center fixed;
-background-size: cover;
-font-family: 'Arial', sans-serif;
-color: #c7c7d2;
-display: flex;
-flex-direction: column;
-gap: 20px;
-margin-top: 70px;
+  margin: 0;
+  background: url('../static/imagens/background-login.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Arial', sans-serif;
+  color: #c7c7d2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Mudei de margin-top para padding-top para evitar problemas de 'margin collapse' */
+  padding-top: 70px;
+  /* Garante que o conteúdo não cole nas bordas */
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* ====== BANNER ====== */
@@ -18,52 +22,109 @@ margin-top: 70px;
   height: 500px;
   width: 100%;
 }
+
 .banner img {
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    height: 100%;
-    object-fit: cover; 
-    border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
+
+/* ====== TÍTULO (NOVO) ====== */
+h2 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #a68bff; /* Cor destacada, vinda do seu painel admin */
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+/* ====== BARRA DE BUSCA (NOVO) ====== */
+.search-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#search-input {
+  width: 80%;
+  max-width: 700px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 25px; /* Deixa a barra arredondada */
+  border: 2px solid #363647;
+  background-color: #1c1c2b; /* Fundo escuro */
+  color: #c7c7d2;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#search-input:focus {
+  border-color: #a68bff;
+  box-shadow: 0 0 10px rgba(166, 139, 255, 0.5);
+}
+
 
 /* ====== JOGOS ====== */
 .jogos {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Alinha os cards pelo topo */
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px;
+  padding: 20px 0; /* Remove padding lateral para centralizar melhor */
+  width: 100%;
+  max-width: 1400px; /* Limita a largura máxima da grade */
+  margin: 0 auto; /* Centraliza a grade de jogos */
 }
 
+/* Estilo para "Carregando..." ou "Nenhum jogo" */
+.jogos p {
+  font-size: 1.2em;
+  color: #fff;
+}
+
+/* ====== CARD DE JOGO (.jogo) ====== */
 .jogo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-   background: rgba(0, 0, 0, 0.8);
+  gap: 10px; /* Reduzi o gap interno */
+  background: rgba(0, 0, 0, 0.8);
   padding: 15px;
   border-radius: 8px;
+  width: 300px; /* Largura fixa para os cards */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jogo:hover {
+  transform: translateY(-5px); /* Efeito de "levantar" */
+  box-shadow: 0 8px 25px rgba(166, 139, 255, 0.3); /* Brilho roxo */
 }
 
 .jogo img {
-  width: 300px;             
-  height: 170px;             
-  object-fit: cover;        
+  width: 100%; /* Ocupa 100% da largura do card */
+  height: 170px;
+  object-fit: cover;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); 
-  transition: transform 0.3s ease;
-}
-
-.jogo img:hover {
-  transform: scale(1.05); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  /* Removi a animação de 'transform' daqui e passei pro '.jogo' */
 }
 
 .jogo h3 {
-  margin: 0;
+  margin: 5px 0;
   font-size: 18px;
+  color: #a68bff; /* Título destacado */
+  text-align: center;
+  /* Altura fixa para alinhar os títulos */
+  height: 40px; 
+  overflow: hidden;
 }
 
 .jogo p {
@@ -71,23 +132,38 @@ margin-top: 70px;
   font-size: 13px;
   color: #ddd;
   text-align: center;
-  max-width: 250px;
   line-height: 1.3;
+  /* Altura fixa para alinhar as descrições */
+  height: 60px;
+  overflow: hidden;
 }
 
+/* ====== CATEGORIA (NOVO) ====== */
+.categoria {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #363647; /* Cinza escuro */
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* ====== PREÇO ====== */
 .preco {
-  background-color: #28a745; 
-  color: #ffffff;             
-  padding: 8px 15px;         
-  border-radius: 8px;        
-  font-weight: bold;         
-  font-size: 16px;           
-  margin-top: 15px;          
-  display: inline-block;     
-  transition: transform 0.3s ease;
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px; /* Um pouco mais de espaço */
+  display: inline-block;
+  transition: transform 0.3s ease, background-color 0.3s;
 }
 
 .preco:hover {
   transform: scale(1.05);
+  background-color: #218838; /* Escurece no hover */
   cursor: pointer;
 }
