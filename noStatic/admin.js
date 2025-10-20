@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
     products.forEach(product => {
       const row = document.createElement('tr');
 
+      // Garantir que o preço seja formatado corretamente
+      const precoFormatado = parseFloat(product.preco_atual).toFixed(2);
+
       const imgHtml = product.capa ? `<img src="${product.capa}" alt="${product.titulo}" style="max-height:60px;">` : '';
       const descricao = product.descricao || '';
       const categoria = product.categoria || '';
@@ -32,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <td>${product.id_produto}</td>
         <td>${imgHtml}</td>
         <td>${product.titulo}</td>
-        <td>R$ ${product.preco_atual}</td>
+        <td>R$ ${precoFormatado}</td> 
         <td>${categoria}</td>
         <td>${descricao}</td>
         <td>
@@ -49,11 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
    * @param {Array<string>} categories - A lista de NOMES de categorias
    */
   function populateCategoryFilter(categories) {
-    // Limpa o select (mantendo a primeira opção)
     filterCategoryInput.innerHTML = '<option value="">Por Categoria</option>';
-
-    // A lista 'categories' agora é um array de strings (nomes)
-    // vindo diretamente do PHP (data.all_categories)
     categories.forEach(category => {
       const option = document.createElement('option');
       option.value = category;
@@ -87,12 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // 3. Filtro por Preço
     if (priceRange) {
       const [min, max] = priceRange.split('-').map(Number);
-      filteredProducts = filteredProducts.filter(p =>
-        p.preco_atual >= min && p.preco_atual <= max
-      );
+      filteredProducts = filteredProducts.filter(p => {
+        // Garante que a comparação seja feita com números
+        const preco = parseFloat(p.preco_atual);
+        return preco >= min && preco <= max;
+      });
     }
 
-    // Renderiza o resultado
     renderProducts(filteredProducts);
   }
 
@@ -106,22 +106,18 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('Acesso negado. Você não é um administrador.');
         window.location.href = '../templates/login.html';
       } else if (data.status === 'success') {
-        // Preenche dados do admin
         document.getElementById('admin-id').innerText = data.admin.id;
         document.getElementById('admin-nome').innerText = data.admin.nome;
         document.getElementById('admin-email').innerText = data.admin.email;
+        
+        // Garante que o preço seja um número para o filtro
+        allProducts = data.products.map(p => {
+            p.preco_atual = parseFloat(p.preco_atual);
+            return p;
+        });
 
-        // Guarda a lista mestre
-        allProducts = data.products;
-
-        // --- MODIFICADO ---
-        // Popula o filtro de categorias com a lista COMPLETA vinda do PHP
         populateCategoryFilter(data.all_categories);
-        // --- FIM DA MODIFICAÇÃO ---
-
-        // Renderiza a tabela inicial
         renderProducts(allProducts);
-
       } else {
         alert('Resposta inesperada do servidor.');
         console.error('Resposta do servidor:', data);
@@ -153,25 +149,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // 4. AÇÕES DE EDITAR/EXCLUIR (Delegação de Evento)
+  // --- 4. (ATUALIZADO) AÇÕES DE EDITAR/EXCLUIR ---
   tbody.addEventListener('click', function (e) {
     const id = e.target.dataset.id;
-    if (!id) return; // Sai se não clicou em um botão com data-id
+    if (!id) return;
 
     // Checa se o botão clicado foi o de EDITAR
     if (e.target.classList.contains('edit-btn')) {
-      alert(`Implementar edição para o ID: ${id}`);
-      // window.location.href = `../templates/admin_edit_produto.html?id=${id}`;
+      // Redireciona para a nova página de edição com o ID na URL
+      window.location.href = `../templates/editarProduto.html?id=${id}`;
     }
 
     // Checa se o botão clicado foi o de EXCLUIR
     if (e.target.classList.contains('delete-btn')) {
       if (confirm(`Tem certeza que deseja excluir o produto ID: ${id}?`)) {
-        alert(`Implementar exclusão para o ID: ${id}`);
-        // ... (lógica de exclusão comentada original) ...
+        
+        // Faz a chamada fetch para a API de exclusão
+        fetch(`../api/excluir.php`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: id }) 
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            alert('Produto excluído!');
+            // Remove a linha da tabela sem recarregar a página
+            e.target.closest('tr').remove();
+          } else {
+            // Mostra erros, incluindo "não autorizado" se a sessão expirou
+            alert('Erro ao excluir: ' + data.message);
+          }
+        })
+        .catch(err => alert('Erro de conexão ao excluir.'));
       }
     }
   });
+  // --- FIM DA ATUALIZAÇÃO ---
+
 
   // 5. EVENT LISTENERS DOS FILTROS
   searchNameInput.addEventListener('input', applyFilters);
@@ -179,12 +196,9 @@ document.addEventListener('DOMContentLoaded', function () {
   filterCategoryInput.addEventListener('change', applyFilters);
 
   clearFiltersBtn.addEventListener('click', () => {
-    // Limpa os campos
     searchNameInput.value = '';
     filterPriceInput.value = '';
     filterCategoryInput.value = '';
-    // Re-renderiza a lista completa
     renderProducts(allProducts);
   });
-
 });

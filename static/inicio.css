@@ -7,9 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* Mudei de margin-top para padding-top para evitar problemas de 'margin collapse' */
   padding-top: 70px;
-  /* Garante que o conteúdo não cole nas bordas */
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -19,7 +17,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 400px;
   width: 100%;
 }
 
@@ -32,40 +30,76 @@ body {
   border-radius: 8px;
 }
 
-/* ====== TÍTULO (NOVO) ====== */
+/* ====== TÍTULO ====== */
 h2 {
   text-align: center;
   font-size: 2.5em;
-  color: #a68bff; /* Cor destacada, vinda do seu painel admin */
+  color: #a68bff;
   margin-top: 20px;
   margin-bottom: 10px;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
-/* ====== BARRA DE BUSCA (NOVO) ====== */
+/* ====== CONTAINER DE BUSCA (ATUALIZADO) ====== */
 .search-container {
-  display: flex;
+  display: flex; /* ATUALIZADO */
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
   justify-content: center;
+  gap: 15px; /* Espaçamento entre os filtros */
   width: 100%;
-  margin-bottom: 20px;
+  max-width: 1200px; /* Limita a largura dos filtros */
+  margin: 0 auto 20px auto; /* Centraliza */
 }
 
-#search-input {
-  width: 80%;
-  max-width: 700px;
+/* Estilo unificado para inputs e selects */
+#search-input,
+.search-container select {
   padding: 12px 20px;
   font-size: 16px;
-  border-radius: 25px; /* Deixa a barra arredondada */
   border: 2px solid #363647;
-  background-color: #1c1c2b; /* Fundo escuro */
+  background-color: #1c1c2b;
   color: #c7c7d2;
+  border-radius: 5px; /* Raio de borda padrão */
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-#search-input:focus {
+/* Faz o input de texto crescer mais que os selects */
+#search-input {
+  flex-grow: 2; /* Ocupa mais espaço */
+  min-width: 300px; /* Largura mínima */
+  border-radius: 25px; /* Mantém o estilo arredondado */
+}
+
+/* Estilo para os selects */
+.search-container select {
+  flex-grow: 1; /* Ocupa espaço disponível */
+  min-width: 200px; /* Largura mínima */
+  cursor: pointer;
+}
+
+/* Foco para inputs e selects */
+#search-input:focus,
+.search-container select:focus {
   border-color: #a68bff;
   box-shadow: 0 0 10px rgba(166, 139, 255, 0.5);
+}
+
+/* NOVO: Botão Limpar */
+#clear-filters-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  background-color: #6c757d; /* Cinza */
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#clear-filters-btn:hover {
+  filter: brightness(0.9);
 }
 
 
@@ -74,16 +108,15 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start; /* Alinha os cards pelo topo */
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px 0; /* Remove padding lateral para centralizar melhor */
+  padding: 20px 0;
   width: 100%;
-  max-width: 1400px; /* Limita a largura máxima da grade */
-  margin: 0 auto; /* Centraliza a grade de jogos */
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Estilo para "Carregando..." ou "Nenhum jogo" */
 .jogos p {
   font-size: 1.2em;
   color: #fff;
@@ -94,36 +127,34 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Reduzi o gap interno */
+  gap: 10px;
   background: rgba(0, 0, 0, 0.8);
   padding: 15px;
   border-radius: 8px;
-  width: 300px; /* Largura fixa para os cards */
+  width: 300px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .jogo:hover {
-  transform: translateY(-5px); /* Efeito de "levantar" */
-  box-shadow: 0 8px 25px rgba(166, 139, 255, 0.3); /* Brilho roxo */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(166, 139, 255, 0.3);
 }
 
 .jogo img {
-  width: 100%; /* Ocupa 100% da largura do card */
+  width: 100%;
   height: 170px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  /* Removi a animação de 'transform' daqui e passei pro '.jogo' */
 }
 
 .jogo h3 {
   margin: 5px 0;
   font-size: 18px;
-  color: #a68bff; /* Título destacado */
+  color: #a68bff;
   text-align: center;
-  /* Altura fixa para alinhar os títulos */
-  height: 40px; 
+  height: 40px;
   overflow: hidden;
 }
 
@@ -133,23 +164,20 @@ h2 {
   color: #ddd;
   text-align: center;
   line-height: 1.3;
-  /* Altura fixa para alinhar as descrições */
   height: 60px;
   overflow: hidden;
 }
 
-/* ====== CATEGORIA (NOVO) ====== */
 .categoria {
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #363647; /* Cinza escuro */
+  background-color: #363647;
   padding: 5px 10px;
   border-radius: 5px;
   margin-top: 5px;
 }
 
-/* ====== PREÇO ====== */
 .preco {
   background-color: #28a745;
   color: #ffffff;
@@ -157,13 +185,13 @@ h2 {
   border-radius: 8px;
   font-weight: bold;
   font-size: 16px;
-  margin-top: 10px; /* Um pouco mais de espaço */
+  margin-top: 10px;
   display: inline-block;
   transition: transform 0.3s ease, background-color 0.3s;
 }
 
 .preco:hover {
   transform: scale(1.05);
-  background-color: #218838; /* Escurece no hover */
+  background-color: #218838;
   cursor: pointer;
 }

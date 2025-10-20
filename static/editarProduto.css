@@ -1,0 +1,125 @@
+/* Importando estilos base para manter consistência */
+body {
+  font-family: Arial, sans-serif;
+  background: url('imagens/background-cadastro.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #c7c7d2;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 800px; /* Formulário é mais estreito que a tabela */
+  margin: 0 auto;
+}
+
+/* --- CABEÇALHO --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1c1c2b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #a68bff;
+}
+
+/* --- CONTAINER DO FORMULÁRIO --- */
+.edit-form-container {
+  background-color: #1c1c2b;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.edit-form-container h2 {
+  margin-top: 0;
+  border-bottom: 1px solid #363647;
+  padding-bottom: 15px;
+  color: #a68bff;
+}
+
+#loading-message {
+  text-align: center;
+  font-size: 1.1em;
+  padding: 20px;
+}
+
+/* --- GRUPOS DE FORMULÁRIO --- */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Estilo unificado para inputs, textarea e select */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box; /* Garante que padding não afete a largura */
+  border: 1px solid #363647;
+  background-color: #2a2a3a;
+  color: #c7c7d2;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --- BOTÕES DE AÇÃO --- */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+  border-top: 1px solid #363647;
+  padding-top: 20px;
+}
+
+.form-actions button,
+.form-actions a {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Botão Salvar (Verde) */
+#save-btn {
+  background-color: #28a745;
+  color: white;
+}
+#save-btn:hover {
+  filter: brightness(0.9);
+}
+
+/* Botão Cancelar (Cinza) */
+.btn-cancelar {
+  background-color: #6c757d;
+  color: white;
+}
+.btn-cancelar:hover {
+  filter: brightness(0.9);
+}
