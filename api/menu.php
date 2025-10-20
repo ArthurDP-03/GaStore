@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             
             echo json_encode([
                 'status' => 'admin_logout',
-                'mensagem' => 'Admin não permitido nesta área. Sessão encerrada.'
+                'mensagem' => 'Admin não permitido nesta área. Você foi deslogado.',
+                'tipo' => 'admin'
             ]);
             exit;
         }

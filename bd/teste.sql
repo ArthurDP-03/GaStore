@@ -31,7 +31,6 @@ CREATE TABLE
         capa VARCHAR(255),
         preco_atual DECIMAL(10, 2) NOT NULL,
         descricao TEXT,
-        tipo ENUM ('jogo', 'outro') DEFAULT 'jogo',
         id_categoria INT, -- relacionamento com Categoria
         CONSTRAINT fk_produto_categoria FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)
     ) ENGINE = InnoDB;
@@ -65,7 +64,8 @@ VALUES
         'Administrador',
         '123.456.789-00',
         'admin@email.com',
-        '$2y$10$T/R3h..zT5s.P.A.s.s.w.o.r.d/H.a.s.h.Y.e.a.h',
+        '$2y$10$xytybADZecNaatwoFvlzEuHv3jfQP9SQnKR2K.pUa3mAlxmmpbFRO',
+        '2000-01-01',
         'admin'
     );
 
@@ -201,7 +201,6 @@ INSERT INTO
         capa,
         preco_atual,
         descricao,
-        tipo,
         id_categoria
     )
 VALUES
@@ -211,7 +210,6 @@ VALUES
         'capas/sekiro.jpg',
         199.99,
         'Tome vingança. Restaure sua honra. Mate astuciosamente.',
-        'jogo',
         1
     ),
     (
@@ -219,7 +217,6 @@ VALUES
         'capas/gow_ragnarok.jpg',
         349.90,
         'Kratos e Atreus buscam respostas enquanto as forças de Asgard se preparam para a guerra.',
-        'jogo',
         1
     ),
     -- Categoria 2: Mundo Aberto
@@ -228,7 +225,6 @@ VALUES
         'capas/gta_v.jpg',
         109.90,
         'Três criminosos muito diferentes arriscam tudo em uma série de assaltos ousados.',
-        'jogo',
         2
     ),
     (
@@ -236,7 +232,6 @@ VALUES
         'capas/witcher_3.jpg',
         129.99,
         'Cace monstros como Geralt de Rivia, um bruxo profissional.',
-        'jogo',
         2
     ),
     -- Categoria 3: RPG
@@ -245,7 +240,6 @@ VALUES
         'capas/baldurs_gate_3.jpg',
         199.99,
         'Reúna seu grupo e retorne aos Reinos Esquecidos em uma história de companheirismo e traição.',
-        'jogo',
         3
     ),
     (
@@ -253,7 +247,6 @@ VALUES
         'capas/skyrim.jpg',
         149.00,
         'Um jogo de fantasia épico em mundo aberto onde você pode ser quem quiser.',
-        'jogo',
         3
     ),
     -- Categoria 4: Aventura
@@ -262,7 +255,6 @@ VALUES
         'capas/tlou_2.jpg',
         199.50,
         'Cinco anos depois, uma jornada brutal por vingança em um mundo pós-pandêmico.',
-        'jogo',
         4
     ),
     (
@@ -270,7 +262,6 @@ VALUES
         'capas/spiderman_2.jpg',
         349.90,
         'Peter Parker e Miles Morales enfrentam o teste final para salvar a cidade de Venom.',
-        'jogo',
         4
     ),
     -- Categoria 5: FPS
@@ -279,7 +270,6 @@ VALUES
         'capas/cs2.jpg',
         79.99,
         'O próximo capítulo de um dos jogos de tiro tático em primeira pessoa mais icônicos.',
-        'jogo',
         5
     ),
     (
@@ -287,7 +277,6 @@ VALUES
         'capas/doom_eternal.jpg',
         149.50,
         'Salve a humanidade rasgando e dilacerando demônios em uma campanha épica.',
-        'jogo',
         5
     ),
     -- Categoria 6: Estratégia
@@ -296,7 +285,6 @@ VALUES
         'capas/starcraft_2.jpg',
         69.90,
         'Um jogo de estratégia em tempo real no espaço, com três raças únicas e complexas.',
-        'jogo',
         6
     ),
     (
@@ -304,7 +292,6 @@ VALUES
         'capas/civilization_6.jpg',
         89.90,
         'Construa um império para resistir ao teste do tempo, expandindo sua civilização da pedra à era espacial.',
-        'jogo',
         6
     ),
     -- Categoria 7: Esportes
@@ -313,7 +300,6 @@ VALUES
         'capas/fc_24.jpg',
         359.00,
         'O futuro do futebol com realismo incomparável e mais de 19.000 jogadores licenciados.',
-        'jogo',
         7
     ),
     (
@@ -321,7 +307,6 @@ VALUES
         'capas/nba_2k24.jpg',
         299.90,
         'Experimente a cultura do basquete no mais novo título da aclamada série NBA 2K.',
-        'jogo',
         7
     ),
     -- Categoria 8: Simulação
@@ -330,7 +315,6 @@ VALUES
         'capas/ms_flight_sim.jpg',
         249.95,
         'Pilote aviões detalhados em um mundo incrivelmente realista, da aviação leve a jatos comerciais.',
-        'jogo',
         8
     ),
     (
@@ -338,7 +322,6 @@ VALUES
         'capas/the_sims_4.jpg',
         0.00,
         'Crie e controle pessoas em um mundo virtual onde não há regras.',
-        'jogo',
         8
     ),
     -- Categoria 9: Sobrevivência
@@ -347,7 +330,6 @@ VALUES
         'capas/rust.jpg',
         109.99,
         'O único objetivo é sobreviver. Supere a fome, a sede e o frio, e cuidado com outros jogadores.',
-        'jogo',
         9
     ),
     (
@@ -355,7 +337,6 @@ VALUES
         'capas/valheim.jpg',
         37.99,
         'Um brutal jogo de sobrevivência e exploração para 1 a 10 jogadores, ambientado em um purgatório gerado proceduralmente.',
-        'jogo',
         9
     ),
     -- Categoria 10: Plataforma
@@ -364,7 +345,6 @@ VALUES
         'capas/mario_odyssey.jpg',
         299.00,
         'Junte-se a Mario em uma massiva aventura 3D global usando suas novas habilidades.',
-        'jogo',
         10
     ),
     (
@@ -372,7 +352,6 @@ VALUES
         'capas/celeste.jpg',
         36.99,
         'Ajude Madeline a sobreviver em sua jornada até o topo da Montanha Celeste neste jogo de plataforma.',
-        'jogo',
         10
     ),
     -- Categoria 11: Terror
@@ -381,7 +360,6 @@ VALUES
         'capas/re4_remake.jpg',
         249.00,
         'Leon S. Kennedy é enviado em uma missão para resgatar a filha do presidente em um vilarejo europeu.',
-        'jogo',
         11
     ),
     (
@@ -389,7 +367,6 @@ VALUES
         'capas/alien_isolation.jpg',
         109.99,
         'Quinze anos após os eventos de Alien, a filha de Ellen Ripley, Amanda, entra em uma batalha desesperada pela sobrevivência.',
-        'jogo',
         11
     ),
     -- Categoria 12: Indie
@@ -398,7 +375,6 @@ VALUES
         'capas/hollow_knight.jpg',
         28.99,
         'Explore um vasto reino em ruínas de insetos e heróis em um jogo de ação e aventura 2D.',
-        'jogo',
         12
     ),
     (
@@ -406,7 +382,6 @@ VALUES
         'capas/undertale.jpg',
         19.99,
         'Um RPG onde você não precisa destruir ninguém.',
-        'jogo',
         12
     ),
     -- Categoria 13: Corrida
@@ -415,7 +390,6 @@ VALUES
         'capas/forza_5.jpg',
         249.00,
         'Lidere expedições de tirar o fôlego pelas paisagens vibrantes e em constante evolução do México.',
-        'jogo',
         13
     ),
     (
@@ -423,7 +397,6 @@ VALUES
         'capas/gt7.jpg',
         299.90,
         'O simulador de corrida real retorna, celebrando 25 anos de história automotiva.',
-        'jogo',
         13
     ),
     -- Categoria 14: Luta
@@ -432,7 +405,6 @@ VALUES
         'capas/mk1.jpg',
         279.90,
         'Descubra um universo renascido de Mortal Kombat criado pelo Deus do Fogo Liu Kang.',
-        'jogo',
         14
     ),
     (
@@ -440,7 +412,6 @@ VALUES
         'capas/sf6.jpg',
         249.00,
         'Domine as ruas no próximo passo da evolução da lendária série de jogos de luta.',
-        'jogo',
         14
     ),
     -- Categoria 15: MMORPG
@@ -449,7 +420,6 @@ VALUES
         'capas/wow.jpg',
         79.90,
         'Entre no massivo mundo online de Azeroth e junte-se a milhões de jogadores nesta saga épica.',
-        'jogo',
         15
     ),
     (
@@ -457,7 +427,6 @@ VALUES
         'capas/ffxiv.jpg',
         59.90,
         'Junte-se à resistência e lute pela liberdade de Eorzea neste aclamado MMORPG.',
-        'jogo',
         15
     ),
     -- Categoria 16: Puzzle
@@ -466,7 +435,6 @@ VALUES
         'capas/portal_2.jpg',
         20.69,
         'Um jogo de quebra-cabeça em primeira pessoa aclamado pela crítica, com física inovadora e uma história envolvente.',
-        'jogo',
         16
     ),
     (
@@ -474,7 +442,6 @@ VALUES
         'capas/tetris_effect.jpg',
         75.99,
         'Tetris como você nunca viu, ouviu ou sentiu antes.',
-        'jogo',
         16
     ),
     -- Categoria 17: Casual
@@ -483,7 +450,6 @@ VALUES
         'capas/among_us.jpg',
         10.89,
         'Um jogo de trabalho em equipe e traição no espaço para 4-15 jogadores.',
-        'jogo',
         17
     ),
     (
@@ -491,7 +457,6 @@ VALUES
         'capas/fall_guys.jpg',
         0.00,
         'Compita com hordas de competidores em um pandemônio online até que reste um vencedor.',
-        'jogo',
         17
     ),
     -- Categoria 18: TPS
@@ -500,7 +465,6 @@ VALUES
         'capas/rdr2.jpg',
         249.00,
         'A história de Arthur Morgan e a gangue Van der Linde no fim da era do Velho Oeste.',
-        'jogo',
         18
     ),
     (
@@ -508,7 +472,6 @@ VALUES
         'capas/gears_5.jpg',
         129.00,
         'Com a guerra total se aproximando, Kait Diaz foge para descobrir sua conexão com o inimigo.',
-        'jogo',
         18
     ),
     -- Categoria 19: JRPG
@@ -517,7 +480,6 @@ VALUES
         'capas/persona_5.jpg',
         299.90,
         'Use a máscara dos Phantom Thieves e mude o coração dos corruptos em Tóquio.',
-        'jogo',
         19
     ),
     (
@@ -525,7 +487,6 @@ VALUES
         'capas/dq_xi.jpg',
         169.90,
         'Embarque em uma grande aventura como o Luminar, o herói escolhido para salvar o mundo de Erdrea.',
-        'jogo',
         19
     ),
     -- Categoria 20: Roguelike
@@ -534,7 +495,6 @@ VALUES
         'capas/hades.jpg',
         47.49,
         'Desafie o deus dos mortos enquanto você hackeia e corta para fora do Submundo.',
-        'jogo',
         20
     ),
     (
@@ -542,7 +502,6 @@ VALUES
         'capas/slay_the_spire.jpg',
         47.49,
         'Uma fusão de construção de baralhos de cartas e roguelike em uma subida de torre.',
-        'jogo',
         20
     ),
     -- Categoria 21: Sandbox
@@ -551,7 +510,6 @@ VALUES
         'capas/terraria.jpg',
         19.99,
         'Cave, lute, explore, construa! O próprio mundo está ao seu alcance.',
-        'jogo',
         21
     ),
     (
@@ -559,7 +517,6 @@ VALUES
         'capas/gmod.jpg',
         20.69,
         'Um sandbox de física. Não há objetivos ou metas predefinidas. Nós damos as ferramentas, você faz o resto.',
-        'jogo',
         21
     ),
     -- Categoria 22: Ritmo
@@ -568,7 +525,6 @@ VALUES
         'capas/beat_saber.jpg',
         57.99,
         'Um jogo de ritmo VR onde você corta batidas musicais com sabres de luz.',
-        'jogo',
         22
     ),
     (
@@ -576,7 +532,6 @@ VALUES
         'capas/hifi_rush.jpg',
         109.00,
         'Sinta a batida enquanto o aspirante a estrela Chai e sua equipe lutam contra uma megacorporação maligna.',
-        'jogo',
         22
     ),
     -- Categoria 23: Hack and Slash
@@ -585,7 +540,6 @@ VALUES
         'capas/diablo_4.jpg',
         349.90,
         'A batalha sem fim entre o Paraíso Celestial e o Inferno Ardente continua.',
-        'jogo',
         23
     ),
     (
@@ -593,7 +547,6 @@ VALUES
         'capas/bayonetta_3.jpg',
         299.00,
         'A bruxa Umbra retorna, mais poderosa do que nunca, para lutar contra homúnculos misteriosos.',
-        'jogo',
         23
     ),
     -- Categoria 24: Stealth
@@ -602,7 +555,6 @@ VALUES
         'capas/mgs_v.jpg',
         75.00,
         'O lendário herói Snake é forçado a um mundo aberto, em uma missão por vingança.',
-        'jogo',
         24
     ),
     (
@@ -610,7 +562,6 @@ VALUES
         'capas/dishonored_2.jpg',
         119.90,
         'Jogue como um assassino sobrenatural em um mundo onde misticismo e indústria colidem.',
-        'jogo',
         24
     ),
     -- Categoria 25: Metroidvania
@@ -619,7 +570,6 @@ VALUES
         'capas/metroid_dread.jpg',
         299.00,
         'Samus Aran é caçada por um novo e mortal robô E.M.M.I. em um planeta alienígena.',
-        'jogo',
         25
     ),
     (
@@ -627,7 +577,6 @@ VALUES
         'capas/ori_2.jpg',
         129.00,
         'Embarque em uma nova jornada em um mundo vasto e exótico cheio de inimigos e quebra-cabeças.',
-        'jogo',
         25
     ),
     -- Categoria 26: Visual Novel
@@ -636,7 +585,6 @@ VALUES
         'capas/doki_doki.jpg',
         28.99,
         'Junte-se ao clube de literatura e encontre o romance perfeito... ou algo mais sombrio.',
-        'jogo',
         26
     ),
     (
@@ -644,7 +592,6 @@ VALUES
         'capas/steins_gate.jpg',
         113.99,
         'Uma visual novel de aventura e viagem no tempo totalmente animada.',
-        'jogo',
         26
     ),
     -- Categoria 27: Battle Royale
@@ -653,7 +600,6 @@ VALUES
         'capas/fortnite.jpg',
         0.00,
         'O popular jogo de batalha real onde você constrói e luta para ser o último de pé.',
-        'jogo',
         27
     ),
     (
@@ -661,7 +607,6 @@ VALUES
         'capas/apex_legends.jpg',
         0.00,
         'Um jogo de tiro de heróis gratuito onde competidores lendários lutam por glória e fortuna.',
-        'jogo',
         27
     ),
     -- Categoria 28: Construção de Cidades
@@ -670,7 +615,6 @@ VALUES
         'capas/cities_skylines_2.jpg',
         179.99,
         'Construa a cidade dos seus sonhos com o construtor de cidades mais realista de todos os tempos.',
-        'jogo',
         28
     ),
     (
@@ -678,7 +622,6 @@ VALUES
         'capas/anno_1800.jpg',
         179.90,
         'Lidere a Revolução Industrial e construa um império industrial.',
-        'jogo',
         28
     ),
     -- Categoria 29: Point-and-Click
@@ -687,7 +630,6 @@ VALUES
         'capas/return_monkey_island.jpg',
         47.49,
         'O retorno inesperado do criador da série, Ron Gilbert, continua a história do lendário pirata Guybrush Threepwood.',
-        'jogo',
         29
     ),
     (
@@ -695,7 +637,6 @@ VALUES
         'capas/grim_fandango.jpg',
         28.99,
         'Uma aventura épica de Manny Calavera, agente de viagens no Departamento da Morte.',
-        'jogo',
         29
     ),
     -- Categoria 30: Outros
@@ -704,7 +645,6 @@ VALUES
         'capas/wii_sports.jpg',
         199.00,
         'Uma coleção de cinco simulações esportivas (Tênis, Beisebol, Boliche, Golfe e Boxe).',
-        'jogo',
         30
     ),
     (
@@ -712,6 +652,5 @@ VALUES
         'capas/jackbox_9.jpg',
         59.90,
         'A nona edição da popular série de jogos de festa, perfeita para grupos.',
-        'jogo',
         30
     );

@@ -1,123 +1,179 @@
 body {
-    font-family: Arial, sans-serif;
-    background: url('imagens/background-cadastro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #c7c7d2;
-    margin: 0;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  background: url('imagens/background-cadastro.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #c7c7d2;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* --- CABEÇALHO --- */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1c1c2b;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1c1c2b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #a68bff;
+  margin: 0;
+  font-size: 24px;
+  color: #a68bff;
 }
 
 /* --- CONTROLES (BOTÕES) --- */
 .controls button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: 0.3s;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s;
 }
 
 #add-product-btn {
-    background-color: #28a745;
-    /* Verde */
-    color: white;
+  background-color: #28a745;
+  /* Verde */
+  color: white;
 }
 
 #add-product-btn:hover {
-    filter: brightness(0.9);
+  filter: brightness(0.9);
 }
 
 #logout-btn {
-    background-color: #dc3545;
-    /* Vermelho */
-    color: white;
+  background-color: #dc3545;
+  /* Vermelho */
+  color: white;
 }
 
 #logout-btn:hover {
-    filter: brightness(0.9);
+  filter: brightness(0.9);
 }
 
 /* --- DADOS DO ADMIN --- */
 .admin-info {
-    background-color: #1c1c2b;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+  background-color: #1c1c2b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .admin-info h2 {
-    margin-top: 0;
-    border-bottom: 1px solid #363647;
-    padding-bottom: 10px;
+  margin-top: 0;
+  border-bottom: 1px solid #363647;
+  padding-bottom: 10px;
 }
 
 .admin-info p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .admin-info p strong {
-    color: #a68bff;
+  color: #a68bff;
 }
 
 /* --- LISTA DE PRODUTOS --- */
 .product-list {
-    background-color: #1c1c2b;
-    padding: 20px;
-    border-radius: 10px;
+  background-color: #1c1c2b;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .product-list h2 {
-    margin-top: 0;
+  margin-top: 0;
+}
+
+/* --- NOVO: Estilos dos Filtros --- */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.filter-container input[type="text"],
+.filter-container select {
+  padding: 10px;
+  border: 1px solid #363647;
+  background-color: #2a2a3a;
+  color: #c7c7d2;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.filter-container input[type="text"] {
+  flex-grow: 1; /* Faz a barra de nome ocupar mais espaço */
+  min-width: 200px;
+}
+
+.filter-container select {
+  cursor: pointer;
+}
+
+#clear-filters-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6c757d; /* Cinza */
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#clear-filters-btn:hover {
+  filter: brightness(0.9);
+}
+/* --- FIM NOVO --- */
+
+
+.table {
+  overflow-y: auto;
+  max-height: 500px;
+  position: relative;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th,
 td {
-    padding: 12px 15px;
-    border: 1px solid #363647;
-    text-align: left;
+  padding: 12px 15px;
+  border: 1px solid #363647;
+  text-align: left;
 }
 
 th {
-    background-color: #363647;
+  background-color: #363647;
 }
 
 tbody tr:hover {
-    background-color: #2a2a3a;
+  background-color: #2a2a3a;
 }
 
 tbody img {
-    max-width: 50px;
-    border-radius: 4px;
-    vertical-align: middle;
-    margin-right: 10px;
+  max-width: 50px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: 10px;
 }

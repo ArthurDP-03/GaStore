@@ -100,9 +100,10 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
             } else {
                 // Exibe mensagem de erro ou redireciona
                 alert(data.mensagem);
-                setTimeout(() => {
+                if (data.tipo === 'admin') {
                     window.location.href = '../templates/login.html';
-                }, 2000);
+                }
+                
             }
         
         });
