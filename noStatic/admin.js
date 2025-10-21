@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (confirm(`Tem certeza que deseja excluir o produto ID: ${id}?`)) {
         
         // Faz a chamada fetch para a API de exclusão
-        fetch(`../api/excluir.php`, {
+        fetch(`../api/excluirProduto.php`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
