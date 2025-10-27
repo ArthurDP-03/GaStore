@@ -58,15 +58,57 @@ document.getElementById('perfilForm').addEventListener('submit', e => {
     e.preventDefault();
 
     const mensagemElemento = document.getElementById('mensagem');
-    const dadosFormulario = new FormData(e.target);
+    
+    // Pega os valores dos inputs para validar
+    const nome = document.getElementById('nomeInput').value;
+    const email = document.getElementById('emailInput').value;
+    const senha = document.getElementById('senhaInput').value;
 
+    // --- Validações ---
+    mensagemElemento.style.color = 'red'; // Cor padrão para erros
+
+    // 1. Validação de campos vazios
+    if (!nome || !email || !senha) {
+        mensagemElemento.innerText = 'Todos os campos (Nome, Email, Senha) são obrigatórios.';
+        return;
+    }
+
+    // 2. Validação de E-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        mensagemElemento.innerText = 'Formato de e-mail inválido.';
+        return;
+    }
+
+    // 3. Validação de Senha (Mesmas regras do cadastro)
+    if (senha.length < 6) {
+        mensagemElemento.innerText = 'A nova senha deve ter no mínimo 6 caracteres.';
+        return;
+    }
+    const uppercaseRegex = /[A-Z]/;
+    if (!uppercaseRegex.test(senha)) {
+        mensagemElemento.innerText = 'A nova senha deve conter pelo menos uma letra maiúscula.';
+        return;
+    }
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    if (!specialCharRegex.test(senha)) {
+        mensagemElemento.innerText = 'A nova senha deve conter pelo menos um caractere especial (ex: !@#$).';
+        return;
+    }
+    // --- Fim das Validações ---
+
+    // Desabilita o botão *antes* do fetch
+    salvarBtn.disabled = true;
+    salvarBtn.style.opacity = '0.7';
+    mensagemElemento.innerText = 'Salvando...';
+
+    const dadosFormulario = new FormData(e.target);
 
     fetch('../api/perfil.php', {
         method: 'POST',
         body: dadosFormulario
     })
         .then(response => {
-            // Se a resposta do servidor não for OK (ex: erro 500 no PHP), gera um erro
             if (!response.ok) {
                 throw new Error('Houve um problema com a resposta do servidor.');
             }
@@ -79,17 +121,18 @@ document.getElementById('perfilForm').addEventListener('submit', e => {
             // Adiciona um feedback visual (muda a cor da mensagem)
             if (data.status === 'sucesso') {
                 mensagemElemento.style.color = 'green';
-                // Limpa o formulário após o sucesso
                 e.target.reset();
                 mensagemElemento.innerText = data.mensagem + " Recarregando a página...";
                 setTimeout(() => {
                     window.location.reload();
-                }, 2500); // Dá tempo de mostrar a mensagem antes de recarregar a página
-
+                }, 2500); 
 
             } else {
                 mensagemElemento.innerText = data.mensagem || 'Ocorreu um erro ao atualizar o perfil.';
                 mensagemElemento.style.color = 'red';
+                // Reabilita o botão em caso de erro
+                salvarBtn.disabled = false;
+                salvarBtn.style.opacity = '1';
             }
         })
         .catch(error => {
@@ -97,11 +140,10 @@ document.getElementById('perfilForm').addEventListener('submit', e => {
             console.error('Erro no fetch:', error);
             mensagemElemento.innerText = 'Não foi possível se conectar ao servidor. Tente novamente mais tarde.';
             mensagemElemento.style.color = 'red';
+            // Reabilita o botão em caso de erro
+            salvarBtn.disabled = false;
+            salvarBtn.style.opacity = '1';
         });
-
-
-    editarBtn.style.display = 'inline-block';
-    salvarBtn.style.display = 'none';
 });
 
 
@@ -114,13 +156,13 @@ document.getElementById('logoutBtn').addEventListener('click', e => {
     })
         .then(response => response.json())
         .then(data => {
-            document.getElementById('mensagem-logout').innerHTML = data.mensagem;
+            document.getElementById('mensagem').innerHTML = data.mensagem;
             if (data.status === 'sucesso') {
                 setTimeout(() => {
                     window.location.href = '../templates/login.html';
                 }, 2000); // Dá tempo de mostrar a mensagem antes de redirecionar
             } else {
-                document.getElementById('mensagem-logout').innerHTML = "Erro ao fazer logout.";
+                document.getElementById('mensagem').innerHTML = "Erro ao fazer logout.";
             }
 
         });

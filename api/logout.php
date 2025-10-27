@@ -1,5 +1,5 @@
 <?php
-
+ini_set('session.cookie_httponly', 1);
 session_start();
 header('Content-Type: application/json');
 $conn = mysqli_connect("localhost:3306", "root", "postly", "gastore");

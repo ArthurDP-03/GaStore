@@ -2,6 +2,7 @@
 header('Content-Type: application/json');
 ini_set('display_errors', 0);
 error_reporting(0);
+ini_set('session.cookie_httponly', 1);
 
 // Inicia a sessão para gerenciar o estado do usuário
 session_start();

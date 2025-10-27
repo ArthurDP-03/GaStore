@@ -85,6 +85,28 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
     .menu-buttons button:hover::after {
     width: 100%;
     }
+    
+    @media (max-width: 768px) {
+        /* Ajusta o padding do body para o menu empilhado (mais alto) */
+        body {
+            /* Ajuste este valor se o menu ficar maior */
+            padding-top: 140px; 
+        }
+
+        .menu-container {
+            /* Empilha o logo e os botões */
+            flex-direction: column; 
+            padding: 15px 20px;
+            gap: 15px; /* Espaço entre o logo e os botões */
+        }
+
+        .menu-buttons {
+            /* Permite que os botões quebrem a linha */
+            flex-wrap: wrap; 
+            /* Centraliza os botões */
+            justify-content: center; 
+            gap: 10px 20px; /* Espaço vertical e horizontal */
+        }
 `;
 
     document.body.appendChild(style); // Adiciona os estilos ao <body>
@@ -103,10 +125,10 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
                 if (data.tipo === 'admin') {
                     window.location.href = '../templates/login.html';
                 }
-                
+
             }
-        
+
         });
-    });
+});
 
 

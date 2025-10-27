@@ -1,3 +1,4 @@
+/* ====== GERAL ====== */
 body {
   margin: 0;
   background: url('../static/imagens/background-login.jpg') no-repeat center center fixed;
@@ -6,28 +7,32 @@ body {
   color: #c7c7d2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   gap: 20px;
+  /* Adiciona padding para o h1 não colar no topo em telas menores */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 h1 {
   font-size: 38px;
-  color: #d0d0e0; /* Alterado */
+  color: #d0d0e0;
   width: 100%;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 60px; /* Espaço para o menu fixo */
   margin-bottom: 20px;
 }
 
+/* ====== CONTAINERS PRINCIPAIS ====== */
 .perfilContainer {
   display: flex;
   flex-direction: row;
   gap: 40px;
   width: 80%;
   max-width: 1200px;
-  max-height: 450px;
+  /* Altura máxima para conter o layout e permitir scroll interno */
+  max-height: 500px; 
   margin-bottom: 10px;
   align-items: stretch;
 }
@@ -36,10 +41,10 @@ h1 {
 .comprasUsuario {
   display: flex;
   flex-direction: column;
-  background-color: #1c1c2b; 
-  padding: 20px; 
-  border-radius: 20px; 
-  box-shadow: -5px 10px 15px rgba(255, 255, 255, 0.534);
+  background-color: #1c1c2b;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
 }
 
@@ -49,16 +54,19 @@ h1 {
 
 .comprasUsuario {
   flex: 2;
-  overflow-y: auto;
+  overflow-y: auto; /* Permite scroll SÓ na tabela de compras */
 }
 
+/* ====== FORMULÁRIO DE DADOS ====== */
 .dados-titulo {
   display: flex;
   justify-content: center;
-  color: #d0d0e0;
-  font-size: 20px; 
+  color: #a68bff; /* Cor de destaque */
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 20px;
+  border-bottom: 1px solid #363647;
+  padding-bottom: 15px;
 }
 
 .dadosUsuario form {
@@ -70,7 +78,7 @@ h1 {
 .divForm {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center; /* Alinha label e input verticalmente */
   width: 100%;
   margin-top: 10px;
   gap: 10px;
@@ -80,30 +88,167 @@ h1 {
   color: #d0d0e0;
   font-size: 16px;
   font-weight: bold;
+  flex-basis: 70px; /* Largura fixa para o label */
+  flex-shrink: 0;
 }
 
+/* Estilo para os spans (modo de visualização) */
+.perfil-info {
+  font-size: 16px;
+  color: #c7c7d2;
+  padding: 8px 12px;
+}
+
+/* Estilo para os inputs (modo de edição) */
+.perfil-form input[type="text"],
+.perfil-form input[type="email"],
+.perfil-form input[type="password"] {
+  background-color: #0a0a14;
+  border: 1px solid #363647;
+  border-radius: 5px;
+  padding: 10px 12px;
+  color: #d0d0e0;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.perfil-form input:focus {
+  border-color: #a68bff;
+  outline: none;
+}
+
+/* ====== BOTÕES ====== */
 button.perfil-button {
   margin-top: 20px;
-  padding: 10px 15px; 
+  padding: 10px 15px;
   background-color: #363647;
   color: #d0d0e0;
   border: none;
-  border-radius: 5px; 
+  border-radius: 5px;
   font-size: 16px;
+  font-weight: 500;
+  /* Flex para alinhar ícone e texto */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button.perfil-button:hover {
   background-color: #464658;
 }
 
-#mensagem-logout {
-  margin-top: 10px;
-  font-size: 18px;
-  text-align: center;
-  color: #d0d0e0;
+/* Alinhamento do ícone */
+.perfil-button .material-symbols-outlined {
+  font-size: 20px;
 }
 
-/*Compras do usuário ________________________________________________________________________________________________________________________*/
+/* Cores específicas para botões de ação */
+#salvarBtn {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+#salvarBtn:hover {
+  background-color: #218838;
+}
+
+#deletarBtn {
+  background-color: #dc3545; /* Vermelho */
+  color: white;
+}
+#deletarBtn:hover {
+  background-color: #c82333;
+}
+
+#logoutBtn {
+  background-color: #6c757d; /* Cinza */
+  color: white;
+}
+#logoutBtn:hover {
+  background-color: #5a6268;
+}
+
+/* ====== MENSAGEM DE FEEDBACK ====== */
+#mensagem {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  min-height: 20px; /* Garante espaço para a mensagem */
+}
+
+/* ====== TABELA DE COMPRAS ====== */
+.comprasUsuario .compras-titulo {
+  color: #a68bff;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #363647;
+  text-align: center;
+}
+
+.comprasUsuario table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comprasUsuario th,
+.comprasUsuario td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #363647;
+  /* Garante que o texto não quebre de forma estranha */
+  white-space: nowrap;
+}
+
+.comprasUsuario thead th {
+  background-color: #2a2a3a;
+  color: #a68bff;
+  position: sticky; /* Efeito do cabeçalho fixo */
+  top: 0;
+  z-index: 10;
+}
+
+.comprasUsuario tbody tr:hover {
+  background-color: #2a2a3a;
+}
+
+/* Mensagem de tabela vazia */
+.comprasUsuario tbody:empty::after {
+  content: "Você ainda não fez nenhuma compra.";
+  display: table-cell;
+  padding: 40px;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
 
 
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 900px) {
+  body {
+    /* Garante que o conteúdo comece de cima em telas pequenas */
+    justify-content: flex-start;
+  }
+  
+  .perfilContainer {
+    flex-direction: column;
+    width: 95%;
+    max-height: none; /* Remove restrição de altura */
+    height: auto;
+  }
 
+  .dadosUsuario,
+  .comprasUsuario {
+    flex: 1; /* Reseta o flex */
+  }
+
+  .comprasUsuario {
+    max-height: 400px; /* Adiciona um scroll na tabela em telas pequenas */
+  }
+}

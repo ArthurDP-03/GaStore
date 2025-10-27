@@ -69,6 +69,18 @@ VALUES
         'admin'
     );
 
+INSERT INTO
+    usuario (nome, cpf, email, senha, dtnasc, tipo)
+VALUES
+    (
+        'Usuario',
+        '123.456.789-11',
+        'usuario@email.com',
+        '$2y$10$xytybADZecNaatwoFvlzEuHv3jfQP9SQnKR2K.pUa3mAlxmmpbFRO',
+        '2000-01-01',
+        'cliente'
+    );
+
 
 INSERT INTO
     Categoria (nome, descricao)
