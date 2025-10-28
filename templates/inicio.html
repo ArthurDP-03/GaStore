@@ -3,41 +3,45 @@
 <head>
   <title>GaStore - Início</title>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../static/inicio.css" />
 </head>
 
 <body>
   <script src="../noStatic/menu.js"></script>
 
-  <div class="banner">
-    <img src="../static/imagens/GASTORE.png" alt="Logo GaStore" width="120">
-  </div>
+  <div class="inicio-wrapper">
 
-  <h2>Lista de Jogos</h2>
+    <div class="banner">
+      <img src="../static/imagens/GASTORE.png" alt="Logo GaStore" width="120">
+    </div>
 
-  <div class="search-container">
-    <input type="text" id="search-input" placeholder="Buscar jogo por nome...">
-    
-    <select id="filter-price">
-      <option value="">Por Preço</option>
-      <option value="0-0">Gratuito</option>
-      <option value="1-50">Até R$ 50,00</option>
-      <option value="51-100">R$ 51,00 - R$ 100,00</option>
-      <option value="101-200">R$ 101,00 - R$ 200,00</option>
-      <option value="201-999999">Acima de R$ 200,00</option>
-    </select>
-    
-    <select id="filter-category">
-      <option value="">Por Categoria</option>
+    <h2>Lista de Jogos</h2>
+
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Buscar jogo por nome...">
+      
+      <select id="filter-price">
+        <option value="">Por Preço</option>
+        <option value="0-0">Gratuito</option>
+        <option value="1-50">Até R$ 50,00</option>
+        <option value="51-100">R$ 51,00 - R$ 100,00</option>
+        <option value="101-200">R$ 101,00 - R$ 200,00</option>
+        <option value="201-999999">Acima de R$ 200,00</option>
       </select>
+      
+      <select id="filter-category">
+        <option value="">Por Categoria</option>
+        </select>
+      
+      <button id="clear-filters-btn">Limpar</button>
+    </div>
     
-    <button id="clear-filters-btn">Limpar</button>
-  </div>
-  <div class="jogos" id="game-list">
-    <p>Carregando jogos...</p>
-  </div>
+    <div class="jogos" id="game-list">
+      <p>Carregando jogos...</p>
+    </div>
 
-
+  </div>
   <script src="../noStatic/inicio.js" defer></script>
 </body>
 

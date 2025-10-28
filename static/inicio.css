@@ -4,6 +4,15 @@ body {
   background-size: cover;
   font-family: 'Arial', sans-serif;
   color: #c7c7d2;
+  min-height: 100vh;
+  gap: 20px;
+  /* Adiciona padding para o h1 não colar no topo em telas menores */
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+/* Nova regra para o 'inicio-wrapper' (com o flex e gap) */
+.inicio-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -11,6 +20,7 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+
 
 /* ====== BANNER ====== */
 .banner {
@@ -194,4 +204,47 @@ h2 {
   transform: scale(1.05);
   background-color: #218838;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+  /* 1. Ajusta o banner para ser menor em telas pequenas 
+  */
+  .banner {
+    height: 250px; /* Reduz a altura fixa */
+    margin-top: 10px;
+  }
+
+  /* 2. Ajusta o título principal 
+  */
+  h2 {
+    font-size: 2em; /* Reduz um pouco a fonte */
+  }
+
+  /* 3. Faz os filtros empilharem verticalmente 
+  */
+  .search-container {
+    gap: 10px; /* Reduz o espaçamento entre eles */
+  }
+
+  #search-input,
+  .search-container select,
+  #clear-filters-btn {
+    width: 100%;    /* Faz cada item ocupar 100% da largura */
+    min-width: 0;   /* Remove a largura mínima que estava atrapalhando */
+  }
+
+  /* 4. Ajusta os cards dos jogos 
+  */
+  .jogos {
+    gap: 15px;
+  }
+  
+  .jogo {
+    /* O card vai ocupar 100% da largura disponível,
+      mas não vai passar de 320px (um bom tamanho para celular).
+    */
+    width: 100%;
+    max-width: 320px;
+  }
 }
