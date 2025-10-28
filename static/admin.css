@@ -175,3 +175,124 @@ tbody img {
   vertical-align: middle;
   margin-right: 10px;
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* Reduzir padding */
+  }
+
+  /* Empilha o H1 e os botões */
+  header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch; /* Faz H1 e .controls ocuparem 100% */
+  }
+
+  .controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Empilha os botões */
+    gap: 10px;
+    margin-left: 0;
+  }
+
+  .controls button {
+    width: 100%;
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+
+  /* Faz os filtros empilharem */
+  .filter-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch; /* Faz os filtros ocuparem 100% */
+  }
+
+  .filter-container input[type="text"],
+  .filter-container select,
+  #clear-filters-btn {
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+    min-width: 0; /* Reseta o min-width que estava atrapalhando */
+  }
+
+  /* 1. Remove a rolagem horizontal */
+  .table {
+    overflow-x: hidden;
+  }
+
+  /* 2. Esconde o cabeçalho original */
+  .table thead {
+    display: none;
+  }
+
+  /* 3. Remove comportamento de tabela e força empilhamento */
+  .table table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* 4. Transforma a linha (tr) em um "card" */
+  .table tr {
+    margin-bottom: 20px;
+    border: 1px solid #363647;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  /* 5. Estiliza as células (td) */
+  .table td {
+    border: none;
+    border-bottom: 1px solid #2a2a3a; /* Linha divisória dentro do card */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    position: relative;
+    /* Permite quebra de linha no conteúdo */
+    white-space: normal; 
+  }
+  .table td:last-child {
+    border-bottom: none; /* Remove linha da última célula */
+  }
+
+  /* 6. Adiciona os RÓTULOS (Labels) usando CSS */
+  .table td:nth-of-type(1)::before { content: "ID:"; }
+  .table td:nth-of-type(2)::before { content: "Capa:"; }
+  .table td:nth-of-type(3)::before { content: "Título:"; }
+  .table td:nth-of-type(4)::before { content: "Preço:"; }
+  .table td:nth-of-type(5)::before { content: "Categoria:"; }
+  .table td:nth-of-type(6)::before { content: "Descrição:"; }
+  .table td:nth-of-type(7)::before { content: "Ações:"; }
+
+  /* 7. Estiliza os rótulos */
+  .table td::before {
+    display: inline-block;
+    width: 80px; /* Largura fixa para os rótulos */
+    font-weight: bold;
+    color: #a68bff; /* Cor de destaque */
+    margin-right: 10px;
+  }
+
+  /* 8. Ajustes para células específicas */
+  
+  /* Faz a imagem da capa ficar abaixo do rótulo */
+  .table td:nth-of-type(2) img {
+    max-height: 80px;
+    display: block;
+    margin-top: 10px;
+    margin-left: 90px; /* Alinha a imagem depois do espaço do rótulo */
+  }
+
+  /* Faz os botões de ação ocuparem 100% da largura */
+  .table td:nth-of-type(7) button {
+    width: 100%;
+    margin: 5px 0 0 0;
+  }
+
+}

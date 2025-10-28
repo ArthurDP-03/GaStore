@@ -123,3 +123,40 @@ header h1 {
 .btn-cancelar:hover {
   filter: brightness(0.9);
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* Reduz padding do body */
+  }
+
+  .container {
+    padding: 0; /* Remove padding do container */
+  }
+
+  .edit-form-container {
+    padding: 20px; /* Reduz padding do form */
+    border-radius: 10px;
+  }
+
+  header {
+    padding: 15px;
+    border-radius: 10px; /* Manter borda no header */
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  /* Empilha os botões do formulário */
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-actions button,
+  .form-actions a {
+    width: 100%;
+    box-sizing: border-box; /* Garante padding correto */
+    text-align: center;
+  }
+}
