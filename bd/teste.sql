@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS GaStore;
 
 USE GaStore;
 
--- Criar tabela de usuários
+-- Criar tabela de usuários (TABELA 1)
 CREATE TABLE
     Usuario (
         id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE
         tipo ENUM ('cliente', 'admin') DEFAULT 'cliente'
     ) ENGINE = InnoDB;
 
--- Criar tabela de categorias
+-- Criar tabela de categorias (TABELA 2)
 CREATE TABLE
     Categoria (
         id_categoria INT AUTO_INCREMENT PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE
         descricao TEXT
     ) ENGINE = InnoDB;
 
--- Criar tabela de produtos
+-- Criar tabela de produtos (TABELA 3)
 CREATE TABLE
     Produto (
         id_produto INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,7 +35,7 @@ CREATE TABLE
         CONSTRAINT fk_produto_categoria FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)
     ) ENGINE = InnoDB;
 
--- Criar tabela de compras
+-- Criar tabela de compras (TABELA 4)
 CREATE TABLE
     Compra (
         id_compra INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,7 +45,7 @@ CREATE TABLE
         CONSTRAINT fk_compra_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)
     ) ENGINE = InnoDB;
 
--- Criar tabela de itens da compra
+-- Criar tabela de itens da compra (TABELA 5)
 CREATE TABLE
     ItemCompra (
         id_compra INT NOT NULL,
@@ -57,6 +57,51 @@ CREATE TABLE
         CONSTRAINT fk_itemcompra_produto FOREIGN KEY (id_produto) REFERENCES Produto (id_produto)
     ) ENGINE = InnoDB;
 
+-- ========================================================================
+-- == INÍCIO DAS 3 NOVAS TABELAS (TOTALIZANDO 8) ==
+-- ========================================================================
+
+-- Criar tabela de Avaliação da Compra (TABELA 6)
+CREATE TABLE AvaliacaoCompra (
+    id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_compra INT NOT NULL,
+    id_usuario INT NOT NULL,
+    nota INT NOT NULL, -- Nota de 1 a 5 para a experiência da compra
+    comentario TEXT,
+    data_avaliacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_aval_compra FOREIGN KEY (id_compra) REFERENCES Compra (id_compra) ON DELETE CASCADE,
+    CONSTRAINT fk_aval_usuario_compra FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+-- Criar tabela de Lista de Desejos (Wishlist) (TABELA 7)
+CREATE TABLE Wishlist (
+    id_usuario INT NOT NULL,
+    id_produto INT NOT NULL,
+    data_adicao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Chave primária composta: um usuário só pode ter um produto na lista uma vez
+    PRIMARY KEY (id_usuario, id_produto), 
+    
+    CONSTRAINT fk_wishlist_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario) ON DELETE CASCADE,
+    CONSTRAINT fk_wishlist_produto FOREIGN KEY (id_produto) REFERENCES Produto (id_produto) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+-- Criar tabela de Cupons de Desconto (TABELA 8)
+CREATE TABLE CupomDesconto (
+    id_cupom INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL, -- Ex: 'BEMVINDO10'
+    tipo_desconto ENUM('percentual', 'fixo') NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL, -- Valor (10.00 para 10% ou R$10,00)
+    data_validade DATE NOT NULL,
+    usos_restantes INT DEFAULT 100
+) ENGINE = InnoDB;
+
+-- ========================================================================
+-- == FIM DAS NOVAS TABELAS ==
+-- ========================================================================
+
+
+-- INSERTS DE DADOS EXISTENTES (USUÁRIOS)
 INSERT INTO
     usuario (nome, cpf, email, senha, dtnasc, tipo)
 VALUES
@@ -82,6 +127,7 @@ VALUES
     );
 
 
+-- INSERTS DE DADOS EXISTENTES (CATEGORIAS)
 INSERT INTO
     Categoria (nome, descricao)
 VALUES
@@ -206,6 +252,7 @@ VALUES
         'Jogos ou itens que não se encaixam nas categorias principais.'
     );
 
+-- INSERTS DE DADOS EXISTENTES (PRODUTOS)
 /*ediat caminhossss    _________________________________________________________________*/
 INSERT INTO
     Produto (
@@ -666,3 +713,13 @@ VALUES
         'A nona edição da popular série de jogos de festa, perfeita para grupos.',
         30
     );
+
+-- ========================================================================
+-- == INSERTS DE DADOS DE EXEMPLO PARA AS NOVAS TABELAS ==
+-- ========================================================================
+
+-- Inserir alguns cupons de exemplo
+INSERT INTO CupomDesconto (codigo, tipo_desconto, valor, data_validade, usos_restantes) 
+VALUES 
+('BEMVINDO10', 'percentual', 10.00, '2026-12-31', 1000),
+('GASTORE5', 'fixo', 5.00, '2026-06-30', 500);

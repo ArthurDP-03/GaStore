@@ -19,8 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     // Busca o usuário logado
     $id_usuario = $_SESSION['id_usuario'];
-    $sql_admin = "SELECT * FROM Usuario WHERE id_usuario = $id_usuario";
-    $result_admin = mysqli_query($conn, $sql_admin);
+    
+    $stmt_admin = $conn->prepare("SELECT * FROM Usuario WHERE id_usuario = ?");
+    $stmt_admin->bind_param("i", $id_usuario);
+    $stmt_admin->execute();
+    $result_admin = $stmt_admin->get_result();
+    // --- FIM DA CORREÇÃO ---
+
 
     if (!$result_admin || mysqli_num_rows($result_admin) === 0) {
         echo json_encode(["status" => "unauthorized", "message" => "Usuário não encontrado"]);
@@ -28,6 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $admin = mysqli_fetch_assoc($result_admin);
+    
+    // Fecha o statement após o uso
+    $stmt_admin->close();
 
     // Verifica se é admin
     if ($admin['tipo'] !== 'admin') {
