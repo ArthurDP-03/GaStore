@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () { // Espera o carregam
             <button onclick="window.location.href='../templates/inicio.html'">Início</button>
             <button onclick="window.location.href='../templates/sobre.html'">Sobre</button>
             <button onclick="window.location.href='../templates/suporte.html'">Suporte</button>
+            <button onclick="window.location.href='../templates/wishlist.html'">Lista de Desejos</button>
             <button onclick="window.location.href='../templates/perfil.html'">
                 Perfil: <span id="perfil-nome"></span>
             </button> 
