@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         populateCategoryFilter(data.all_categories);
         renderProducts(allProducts);
 
-      // 2. Check de Autorização (status: 'unauthorized' ou 'admin_logout')
-      } else if (data.status === 'unauthorized' || data.status === 'admin_logout') {
-        alert(data.mensagem); // Ex: "Você não está logado."
+      // 2. Check de Autorização (status: 'admin_logout')
+      } else if (data.status === 'admin_logout') {
+        alert(data.mensagem); // Ex: "Admin não permitido..."
         window.location.href = '../templates/login.html'; // Redireciona para o login
       
       // 3. Outros Erros (status: 'error')
-      } else {
+      } else if (data.status === 'error') {
         console.error('API retornou um erro:', data.message || 'Formato inesperado');
         gameList.innerHTML = `<p>Erro ao carregar jogos: ${data.message || 'Tente novamente.'}</p>`;
       }
@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
       btn.textContent = '...';
 
-      // Chama a api/wishlist.php (que já tem a segurança de sessão)
       fetch('../api/wishlist.php', {
         method: 'POST',
         body: formData
@@ -148,7 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.textContent = '✓';
           btn.style.backgroundColor = '#28a745';
           alert(data.message);
-        } else {
+        } else if (data.status === 'unauthorized') { // Se não estiver logado
+          alert(data.message); // Ex: "Você precisa estar logado..."
+          window.location.href = '../templates/login.html'; // Redireciona
+        } else { // Outros erros
           alert(data.message); 
           btn.textContent = '+';
           btn.disabled = false;

@@ -14,13 +14,18 @@ fetch('../api/perfil.php', {
         return response.json();
     })
     .then(data => {
+        // --- MODIFICAÇÃO AQUI ---
         if (data.status === 'sucesso') {
             document.getElementById('idDisplay').innerText = data.id_usuario;
             document.getElementById('nomeDisplay').innerText = data.nome;
             document.getElementById('emailDisplay').innerText = data.email;
+        } else if (data.status === 'unauthorized') {
+            alert(data.mensagem); 
+            window.location.href = '../templates/login.html'; // Redireciona
         } else {
             console.error('Erro ao carregar perfil:', data.mensagem);
         }
+
     })
     .catch(error => {
         console.error('Erro na requisição:', error);
@@ -133,6 +138,13 @@ document.getElementById('perfilForm').addEventListener('submit', e => {
                 // Reabilita o botão em caso de erro
                 salvarBtn.disabled = false;
                 salvarBtn.style.opacity = '1';
+
+                // Se o erro for de autorização no POST, redireciona também
+                if (data.status === 'unauthorized') {
+                    setTimeout(() => {
+                        window.location.href = '../templates/login.html';
+                    }, 2000);
+                }
             }
         })
         .catch(error => {
@@ -182,6 +194,9 @@ deletarBtn.addEventListener('click', e => {
                     setTimeout(() => {
                         window.location.href = '../templates/login.html';
                     }, 2000); // Dá tempo de mostrar a mensagem antes de redirecionar
+                } else if (data.status === 'unauthorized') { // Adicionado para segurança
+                     alert(data.mensagem);
+                     window.location.href = '../templates/login.html';
                 }
             });
     }

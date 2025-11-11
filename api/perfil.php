@@ -6,8 +6,12 @@ $conn = mysqli_connect("localhost:3306", "root", "postly", "gastore");
 $resposta = [];
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    // Aqui você pode adicionar GET do perfil
     if (isset($_SESSION['id_usuario'])) {
+        if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'cliente') {
+            echo json_encode(["status" => "unauthorized", "message" => "Acesso negado. Apenas clientes podem ter perfil."]);
+            exit;
+        }
+
         $id_usuario = $_SESSION['id_usuario'];
         $stmt = $conn->prepare("SELECT nome, email FROM usuario WHERE id_usuario = ?");
         $stmt->bind_param("i", $id_usuario);
@@ -31,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         $stmt->close();
     } else {
         $resposta = [
-            'status' => 'erro',
-            'mensagem' => 'Usuário não está logado.',
+            'status' => 'unauthorized',
+            'mensagem' => 'Você precisa estar logado para ver seu perfil.',
         ];
     }
 }
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Aqui você pode adicionar POST UPDATE do perfil
-    if (isset($_SESSION['id_usuario'])) {
+    if (isset($_SESSION['id_usuario']) && isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'cliente') {
         $id_usuario = $_SESSION['id_usuario'];
         $nome = $_POST['nome'];
         $email = $_POST['email'];
@@ -70,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmt->close();
     } else {
         $resposta = [
-            'status' => 'erro',
-            'mensagem' => 'Usuário não está logado.',
+            'status' => 'unauthorized', 
+            'mensagem' => 'Sua sessão expirou ou você não tem permissão. Faça login novamente.',
         ];
     }
 }

@@ -15,6 +15,13 @@ if (!isset($_SESSION['id_usuario'])) {
     exit;
 }
 
+// Verifica se o usuário logado é um cliente
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'cliente') {
+    echo json_encode(["status" => "unauthorized", "message" => "Acesso negado. Apenas clientes podem ter uma lista de desejos."]);
+    exit;
+}
+
+
 $id_usuario = $_SESSION['id_usuario'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -32,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $result = $stmt->get_result();
 
     $produtos = [];
-    while ($row = $result->fetch_assoc()) {
+    while ($result && $row = $result->fetch_assoc()) {
         $produtos[] = $row;
     }
 
