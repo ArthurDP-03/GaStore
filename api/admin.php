@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt_admin->bind_param("i", $id_usuario);
     $stmt_admin->execute();
     $result_admin = $stmt_admin->get_result();
-    // --- FIM DA CORREÇÃO ---
 
 
     if (!$result_admin || mysqli_num_rows($result_admin) === 0) {
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $admin = mysqli_fetch_assoc($result_admin);
     
-    // Fecha o statement após o uso
     $stmt_admin->close();
 
     // Verifica se é admin
@@ -63,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $products[] = $row;
     }
 
-    // --- NOVO: BUSCAR TODAS AS CATEGORIAS DA TABELA ---
+    // BUSCAR TODAS AS CATEGORIAS DA TABELA ---
     $sql_categorias = "SELECT nome FROM Categoria ORDER BY nome ASC";
     $result_categorias = mysqli_query($conn, $sql_categorias);
     
@@ -72,7 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // Adiciona apenas a string do nome no array
         $all_categories[] = $row_cat['nome']; 
     }
-    // --- FIM DA ADIÇÃO ---
+
+    // --- BUSCAR TODOS OS USUÁRIOS ---
+    $sql_users = "SELECT id_usuario, nome, email, tipo FROM Usuario WHERE id_usuario != ? ORDER BY nome ASC";
+    $stmt_users = $conn->prepare($sql_users);
+    $stmt_users->bind_param("i", $id_usuario); 
+    $stmt_users->execute();
+    $result_users = $stmt_users->get_result();
+
+    $users = [];
+    while ($row_user = $result_users->fetch_assoc()) {
+        $users[] = $row_user;
+    }
+    $stmt_users->close();
 
 
     // Retorna os dados
@@ -84,7 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             "email" => $admin['email']
         ],
         "products" => $products,
-        "all_categories" => $all_categories // <-- NOVO: Envia o array de categorias
+        "all_categories" => $all_categories, // <-- NOVO: Envia o array de categorias
+        "users" => $users // <-- NOVO: Envia o array de usuários
     ]);
 
 } else {

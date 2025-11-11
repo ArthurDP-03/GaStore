@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const filterPriceInput = document.getElementById('filter-price');
   const filterCategoryInput = document.getElementById('filter-category');
   const clearFiltersBtn = document.getElementById('clear-filters-btn');
+  
+  // ===== NOVO: Variável para a lista de usuários =====
+  const userTbody = document.getElementById('user-list-body');
 
   // --- FUNÇÕES AUXILIARES ---
 
@@ -46,6 +49,38 @@ document.addEventListener('DOMContentLoaded', function () {
       tbody.appendChild(row);
     });
   }
+  
+  // ===== INÍCIO: Função de renderizar usuários ATUALIZADA =====
+  /**
+   * Renderiza a lista de usuários na tabela
+   * @param {Array} users - A lista de usuários a ser renderizada
+   */
+  function renderUsers(users) {
+    userTbody.innerHTML = ''; // Limpa a tabela de usuários
+
+    if (users.length === 0) {
+      // Colspan atualizado para 4
+      userTbody.innerHTML = '<tr><td colspan="4">Nenhum outro usuário encontrado.</td></tr>';
+      return;
+    }
+
+    users.forEach(user => {
+      const row = document.createElement('tr');
+      
+      // Adiciona classe CSS se o usuário for 'admin'
+      const userTypeClass = user.tipo === 'admin' ? 'user-type-admin' : '';
+
+      row.innerHTML = `
+        <td>${user.id_usuario}</td>
+        <td>${user.nome}</td>
+        <td>${user.email}</td>
+        <td class="${userTypeClass}">${user.tipo}</td>
+        `;
+      userTbody.appendChild(row);
+    });
+  }
+  // ===== FIM: Função de renderizar usuários =====
+
 
   /**
    * Popula o dropdown de categorias com base na lista vinda do PHP
@@ -118,6 +153,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         populateCategoryFilter(data.all_categories);
         renderProducts(allProducts);
+        
+        // ===== NOVO: Chama a renderização de usuários =====
+        if (data.users) {
+          renderUsers(data.users);
+        }
+        
       } else {
         alert('Resposta inesperada do servidor.');
         console.error('Resposta do servidor:', data);
@@ -149,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // --- 4. (ATUALIZADO) AÇÕES DE EDITAR/EXCLUIR ---
+  // 4. EVENT DE CLIQUE NA TABELA (EDITAR/EXCLUIR)
   tbody.addEventListener('click', function (e) {
     const id = e.target.dataset.id;
     if (!id) return;
@@ -187,7 +228,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-  // --- FIM DA ATUALIZAÇÃO ---
 
 
   // 5. EVENT LISTENERS DOS FILTROS

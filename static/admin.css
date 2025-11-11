@@ -41,6 +41,7 @@ header h1 {
   transition: 0.3s;
 }
 
+/* Este ID agora só se aplica ao botão DENTRO da section-header */
 #add-product-btn {
   background-color: #28a745;
   /* Verde */
@@ -176,6 +177,45 @@ tbody img {
   margin-right: 10px;
 }
 
+
+/* ===== INÍCIO: Novas regras de CSS ===== */
+
+/* 1. Container para H2 e Botão Adicionar */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Adiciona espaço antes dos filtros */
+}
+
+.section-header h2 {
+  margin: 0; /* Remove margem padrão do h2 */
+}
+
+/* 2. Estilo da nova seção de usuários */
+.user-list {
+  background-color: #1c1c2b;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px; /* Espaço entre as seções */
+}
+
+.user-list h2 {
+  margin-top: 0;
+}
+
+/* 3. Estilo para o botão de excluir usuário (REMOVIDO) */
+
+/* 4. Estilo para destacar admin na lista */
+.user-list .user-type-admin {
+  font-weight: bold;
+  color: #a68bff; /* Cor de admin */
+}
+
+
+/* ===== FIM: Novas regras de CSS ===== */
+
+
 @media (max-width: 768px) {
   body {
     padding: 10px; /* Reduzir padding */
@@ -293,6 +333,55 @@ tbody img {
   .table td:nth-of-type(7) button {
     width: 100%;
     margin: 5px 0 0 0;
+  }
+
+
+  /* 6. Adiciona os RÓTULOS (Labels) para a tabela de USUÁRIOS */
+  .user-list .table thead { display: none; }
+
+  .user-list .table table,
+  .user-list .table tbody,
+  .user-list .table tr,
+  .user-list .table td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .user-list .table tr {
+    margin-bottom: 20px;
+    border: 1px solid #363647;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .user-list .table td {
+    border: none;
+    border-bottom: 1px solid #2a2a3a;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    position: relative;
+    white-space: normal; 
+  }
+  .user-list .table td:last-child {
+    border-bottom: none;
+  }
+  
+  /* Definição dos rótulos da tabela de usuários (Ações removida) */
+  .user-list .table td:nth-of-type(1)::before { content: "ID:"; }
+  .user-list .table td:nth-of-type(2)::before { content: "Nome:"; }
+  .user-list .table td:nth-of-type(3)::before { content: "Email:"; }
+  .user-list .table td:nth-of-type(4)::before { content: "Tipo:"; }
+
+  /* Estilo dos rótulos (puxando do .table) */
+  .user-list .table td::before {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+    color: #a68bff;
+    margin-right: 10px;
   }
 
 }
