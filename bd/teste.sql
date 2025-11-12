@@ -36,13 +36,25 @@ CREATE TABLE
     ) ENGINE = InnoDB;
 
 -- Criar tabela de compras (TABELA 4)
+-- Criar tabela de Cupons de Desconto (TABELA 8)
+CREATE TABLE CupomDesconto (
+    id_cupom INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL, -- Ex: 'BEMVINDO10'
+    tipo_desconto ENUM('percentual', 'fixo') NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL, -- Valor (10.00 para 10% ou R$10,00)
+    data_validade DATE NOT NULL,
+    usos_restantes INT DEFAULT 100
+) ENGINE = InnoDB;
+
 CREATE TABLE
     Compra (
         id_compra INT AUTO_INCREMENT PRIMARY KEY,
         id_usuario INT NOT NULL,
         data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         valor_total DECIMAL(10, 2) NOT NULL,
-        CONSTRAINT fk_compra_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)
+        id_cupom INT NULL, -- <<-- ADICIONADO
+        CONSTRAINT fk_compra_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),
+        CONSTRAINT fk_compra_cupom FOREIGN KEY (id_cupom) REFERENCES CupomDesconto (id_cupom) -- <<-- ADICIONADO
     ) ENGINE = InnoDB;
 
 -- Criar tabela de itens da compra (TABELA 5)
@@ -86,15 +98,6 @@ CREATE TABLE Wishlist (
     CONSTRAINT fk_wishlist_produto FOREIGN KEY (id_produto) REFERENCES Produto (id_produto) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
--- Criar tabela de Cupons de Desconto (TABELA 8)
-CREATE TABLE CupomDesconto (
-    id_cupom INT AUTO_INCREMENT PRIMARY KEY,
-    codigo VARCHAR(50) UNIQUE NOT NULL, -- Ex: 'BEMVINDO10'
-    tipo_desconto ENUM('percentual', 'fixo') NOT NULL,
-    valor DECIMAL(10, 2) NOT NULL, -- Valor (10.00 para 10% ou R$10,00)
-    data_validade DATE NOT NULL,
-    usos_restantes INT DEFAULT 100
-) ENGINE = InnoDB;
 
 
 

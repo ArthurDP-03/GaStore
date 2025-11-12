@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id_produto = urlParams.get('id');
 
     let produtoAtual = null; // Para guardar os dados do produto
+    let cupomValidado = null; // Para guardar o código do cupom aplicado
 
     if (!id_produto) {
         container.innerHTML = '<h2>Erro</h2><p>Nenhum produto selecionado.</p>';
@@ -54,12 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     <div class="cupom-container">
                         <input type="text" id="cupom-input" placeholder="Código do Cupom">
-                        </div>
+                        <button id="btn-aplicar-cupom">Aplicar</button>
+                    </div>
+                    <p id="mensagem-cupom"></p>
 
                     <div class="total-container">
-                        Total: 
-                        <span id="preco-final">R$ ${precoFormatado}</span>
-                        </div>
+                        <span id="preco-original"></span>
+                        <span id="valor-desconto"></span>
+                        <span id="preco-final">Total: R$ ${precoFormatado}</span>
+                    </div>
 
                     <button id="btn-confirmar-compra">Confirmar Compra</button>
                     <p id="mensagem-compra"></p>
@@ -67,15 +71,82 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // 3. ADICIONAR EVENTO AO BOTÃO DE CONFIRMAR
+        // 3. ADICIONAR EVENTOS AOS BOTÕES
+        document.getElementById('btn-aplicar-cupom').addEventListener('click', aplicarCupom);
         document.getElementById('btn-confirmar-compra').addEventListener('click', processarCompra);
     }
 
-    // 4. FUNÇÃO PARA PROCESSAR A COMPRA (POST)
+    // 4. FUNÇÃO PARA APLICAR O CUPOM (NOVA)
+    function aplicarCupom() {
+        const cupomInput = document.getElementById('cupom-input');
+        const cupom = cupomInput.value.trim();
+        const btnAplicar = document.getElementById('btn-aplicar-cupom');
+        const msgCupom = document.getElementById('mensagem-cupom');
+
+        const precoOriginalEl = document.getElementById('preco-original');
+        const valorDescontoEl = document.getElementById('valor-desconto');
+        const precoFinalEl = document.getElementById('preco-final');
+
+        if (!cupom) {
+            msgCupom.textContent = "Digite um código.";
+            msgCupom.style.color = 'red';
+            return;
+        }
+
+        btnAplicar.disabled = true;
+        btnAplicar.textContent = '...';
+        msgCupom.textContent = '';
+
+        fetch('../api/verificar_cupom.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id_produto: produtoAtual.id_produto,
+                codigo_cupom: cupom
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            btnAplicar.disabled = false;
+            btnAplicar.textContent = 'Aplicar';
+
+            if (data.status === 'success') {
+                msgCupom.style.color = 'green';
+                msgCupom.textContent = data.message;
+
+                // Atualiza os preços na tela
+                precoOriginalEl.textContent = `Preço Original: R$ ${parseFloat(data.preco_original).toFixed(2)}`;
+                valorDescontoEl.textContent = `Desconto: - R$ ${parseFloat(data.valor_desconto).toFixed(2)}`;
+                precoFinalEl.textContent = `Total: R$ ${parseFloat(data.preco_final).toFixed(2)}`;
+
+                cupomValidado = cupom; // Armazena o cupom que deu certo
+                cupomInput.disabled = true; // Trava o campo
+                btnAplicar.disabled = true; // Trava o botão
+            } else {
+                msgCupom.style.color = 'red';
+                msgCupom.textContent = data.message;
+                
+                // Reseta os preços
+                precoOriginalEl.textContent = '';
+                valorDescontoEl.textContent = '';
+                precoFinalEl.textContent = `Total: R$ ${parseFloat(produtoAtual.preco_atual).toFixed(2)}`;
+                
+                cupomValidado = null; // Limpa o cupom inválido
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            btnAplicar.disabled = false;
+            btnAplicar.textContent = 'Aplicar';
+            msgCupom.style.color = 'red';
+            msgCupom.textContent = 'Erro de conexão ao aplicar cupom.';
+        });
+    }
+
+    // 5. FUNÇÃO PARA PROCESSAR A COMPRA (MODIFICADA)
     function processarCompra() {
         const btn = document.getElementById('btn-confirmar-compra');
         const msg = document.getElementById('mensagem-compra');
-        const cupom = document.getElementById('cupom-input').value.trim();
 
         btn.disabled = true;
         btn.textContent = 'Processando...';
@@ -84,7 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dadosCompra = {
             id_produto: produtoAtual.id_produto,
-            codigo_cupom: cupom || null
+            // Envia o cupom SÓ se ele foi validado com sucesso
+            codigo_cupom: cupomValidado 
         };
 
         fetch('../api/compra.php', {
