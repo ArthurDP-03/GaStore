@@ -39,14 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
     // 2.2. Se NÃO for Admin (seja cliente logado ou visitante), permite carregar os produtos
     
-    // MODIFICADO: Adicionado "WHERE p.ativo = 1"
     $sql_produtos = "
         SELECT 
             p.id_produto, p.titulo, p.capa,
             p.preco_atual, p.descricao, c.nome AS categoria
         FROM Produto p
         LEFT JOIN Categoria c ON p.id_categoria = c.id_categoria
-        WHERE p.ativo = 1 
         ORDER BY p.titulo ASC
     ";
     $result_produtos = mysqli_query($conn, $sql_produtos);

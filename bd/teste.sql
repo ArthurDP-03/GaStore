@@ -31,20 +31,9 @@ CREATE TABLE
         capa VARCHAR(255),
         preco_atual DECIMAL(10, 2) NOT NULL,
         descricao TEXT,
-        id_categoria INT,
-        ativo BOOLEAN DEFAULT 1, -- NOVO: Para "Soft Delete" (1 = Ativo, 0 = Inativo)
+        id_categoria INT, -- relacionamento com Categoria
         CONSTRAINT fk_produto_categoria FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)
     ) ENGINE = InnoDB;
-
--- Criar tabela de Cupons de Desconto (TABELA 8)
-CREATE TABLE CupomDesconto (
-    id_cupom INT AUTO_INCREMENT PRIMARY KEY,
-    codigo VARCHAR(50) UNIQUE NOT NULL, -- Ex: 'BEMVINDO10'
-    tipo_desconto ENUM('percentual', 'fixo') NOT NULL,
-    valor DECIMAL(10, 2) NOT NULL, -- Valor (10.00 para 10% ou R$10,00)
-    data_validade DATE NOT NULL,
-    usos_restantes INT DEFAULT 100
-) ENGINE = InnoDB;
 
 -- Criar tabela de compras (TABELA 4)
 CREATE TABLE
@@ -53,9 +42,7 @@ CREATE TABLE
         id_usuario INT NOT NULL,
         data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         valor_total DECIMAL(10, 2) NOT NULL,
-        id_cupom INT NULL, -- NOVO: Para rastrear o cupom usado
-        CONSTRAINT fk_compra_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),
-        CONSTRAINT fk_compra_cupom FOREIGN KEY (id_cupom) REFERENCES CupomDesconto (id_cupom) -- NOVO: Ligação com a tabela de cupons
+        CONSTRAINT fk_compra_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario)
     ) ENGINE = InnoDB;
 
 -- Criar tabela de itens da compra (TABELA 5)
@@ -68,8 +55,6 @@ CREATE TABLE
         PRIMARY KEY (id_compra, id_produto),
         CONSTRAINT fk_itemcompra_compra FOREIGN KEY (id_compra) REFERENCES Compra (id_compra) ON DELETE CASCADE,
         CONSTRAINT fk_itemcompra_produto FOREIGN KEY (id_produto) REFERENCES Produto (id_produto)
-        -- A restrição aqui está correta (ON DELETE RESTRICT por padrão).
-        -- Nunca excluiremos um produto, apenas o marcaremos como 'ativo = 0'.
     ) ENGINE = InnoDB;
 
 -- ========================================================================
@@ -101,10 +86,16 @@ CREATE TABLE Wishlist (
     CONSTRAINT fk_wishlist_produto FOREIGN KEY (id_produto) REFERENCES Produto (id_produto) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
+-- Criar tabela de Cupons de Desconto (TABELA 8)
+CREATE TABLE CupomDesconto (
+    id_cupom INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL, -- Ex: 'BEMVINDO10'
+    tipo_desconto ENUM('percentual', 'fixo') NOT NULL,
+    valor DECIMAL(10, 2) NOT NULL, -- Valor (10.00 para 10% ou R$10,00)
+    data_validade DATE NOT NULL,
+    usos_restantes INT DEFAULT 100
+) ENGINE = InnoDB;
 
--- ========================================================================
--- == FIM DAS NOVAS TABELAS ==
--- ========================================================================
 
 
 -- INSERTS DE DADOS EXISTENTES (USUÁRIOS)

@@ -44,22 +44,22 @@ if (!$id_produto) {
     exit;
 }
 
-// MODIFICADO: Prepara e executa a query de "soft delete" (desativação)
-$sql_update = "UPDATE Produto SET ativo = 0 WHERE id_produto = ?";
-$stmt_update = $conn->prepare($sql_update);
-$stmt_update->bind_param("i", $id_produto);
+// Prepara e executa a query de exclusão
+$sql_delete = "DELETE FROM Produto WHERE id_produto = ?";
+$stmt_delete = $conn->prepare($sql_delete);
+$stmt_delete->bind_param("i", $id_produto);
 
-if ($stmt_update->execute()) {
-    if ($stmt_update->affected_rows > 0) {
-        echo json_encode(["status" => "success", "message" => "Produto desativado com sucesso"]);
+if ($stmt_delete->execute()) {
+    if ($stmt_delete->affected_rows > 0) {
+        echo json_encode(["status" => "success", "message" => "Produto excluído com sucesso"]);
     } else {
-        echo json_encode(["status" => "error", "message" => "Produto não encontrado ou já desativado"]);
+        echo json_encode(["status" => "error", "message" => "Produto não encontrado"]);
     }
 } else {
-    echo json_encode(["status" => "error", "message" => "Erro ao desativar produto: " . $conn->error]);
+    echo json_encode(["status" => "error", "message" => "Erro ao excluir produto: " . $conn->error]);
 }
 
 $stmt_admin->close();
-$stmt_update->close(); // Variável de statement corrigida
+$stmt_delete->close();
 $conn->close();
 ?>
