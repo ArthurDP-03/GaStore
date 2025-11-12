@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const filterPriceInput = document.getElementById('filter-price');
   const filterCategoryInput = document.getElementById('filter-category');
   const clearFiltersBtn = document.getElementById('clear-filters-btn');
-  
+  const couponTbody = document.getElementById('coupon-list-body');
+
   // ===== NOVO: Variável para a lista de usuários =====
   const userTbody = document.getElementById('user-list-body');
 
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
       tbody.appendChild(row);
     });
   }
-  
+
   // ===== INÍCIO: Função de renderizar usuários ATUALIZADA =====
   /**
    * Renderiza a lista de usuários na tabela
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     users.forEach(user => {
       const row = document.createElement('tr');
-      
+
       // Adiciona classe CSS se o usuário for 'admin'
       const userTypeClass = user.tipo === 'admin' ? 'user-type-admin' : '';
 
@@ -80,6 +81,46 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   // ===== FIM: Função de renderizar usuários =====
+
+  /**
+ * Renderiza a lista de cupons na tabela
+ * @param {Array} coupons - A lista de cupons
+ */
+  function renderCoupons(coupons) {
+    couponTbody.innerHTML = '';
+
+    if (coupons.length === 0) {
+      couponTbody.innerHTML = '<tr><td colspan="7">Nenhum cupom cadastrado.</td></tr>';
+      return;
+    }
+
+    coupons.forEach(coupon => {
+      const row = document.createElement('tr');
+
+      // Formata o valor
+      const valorFormatado = coupon.tipo_desconto === 'percentual'
+        ? `${parseFloat(coupon.valor).toFixed(0)}%`
+        : `R$ ${parseFloat(coupon.valor).toFixed(2)}`;
+
+      // Formata a data
+      const data = new Date(coupon.data_validade);
+      const dataFormatada = data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+
+      row.innerHTML = `
+      <td>${coupon.id_cupom}</td>
+      <td>${coupon.codigo}</td>
+      <td>${coupon.tipo_desconto}</td>
+      <td>${valorFormatado}</td>
+      <td>${dataFormatada}</td>
+      <td>${coupon.usos_restantes}</td>
+      <td>
+        <button class="edit-btn" data-id="${coupon.id_cupom}">Editar</button>
+        <button class="delete-btn" data-id="${coupon.id_cupom}">Excluir</button>
+      </td>
+    `;
+      couponTbody.appendChild(row);
+    });
+  }
 
 
   /**
@@ -144,21 +185,28 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('admin-id').innerText = data.admin.id;
         document.getElementById('admin-nome').innerText = data.admin.nome;
         document.getElementById('admin-email').innerText = data.admin.email;
-        
+        if (data.users) {
+          renderUsers(data.users);
+        }
+
         // Garante que o preço seja um número para o filtro
         allProducts = data.products.map(p => {
-            p.preco_atual = parseFloat(p.preco_atual);
-            return p;
+          p.preco_atual = parseFloat(p.preco_atual);
+          return p;
         });
 
         populateCategoryFilter(data.all_categories);
         renderProducts(allProducts);
-        
-        // ===== NOVO: Chama a renderização de usuários =====
+
+        // Chama a renderização de usuários =====
         if (data.users) {
           renderUsers(data.users);
         }
-        
+        // Chama a renderização de cupons =====
+        if (data.coupons) {
+          renderCoupons(data.coupons);
+        }
+
       } else {
         alert('Resposta inesperada do servidor.');
         console.error('Resposta do servidor:', data);
@@ -171,12 +219,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- EVENT LISTENERS (Ações do Usuário) ---
 
-  // 2. AÇÃO DO BOTÃO DE ADICIONAR
+  // AÇÃO DO BOTÃO DE ADICIONAR
   document.getElementById('add-product-btn').addEventListener('click', () => {
     window.location.href = '../templates/admin_add_produto.html';
   });
 
-  // 3. AÇÃO DO BOTÃO DE DESLOGAR
+  // AÇÃO DO BOTÃO DE ADICIONAR CUPOM
+  document.getElementById('add-coupon-btn').addEventListener('click', () => {
+    window.location.href = '../templates/admin_add_cupom.html';
+  });
+
+  // AÇÃO DO BOTÃO DE DESLOGAR
   document.getElementById('logout-btn').addEventListener('click', () => {
     if (confirm('Tem certeza que deseja deslogar?')) {
       fetch('../api/logout.php')
@@ -190,7 +243,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // 4. EVENT DE CLIQUE NA TABELA (EDITAR/EXCLUIR)
+  
+  // EVENT DE CLIQUE NA TABELA DE CUPONS (EDITAR/EXCLUIR)
+couponTbody.addEventListener('click', function (e) {
+  const id = e.target.dataset.id;
+  if (!id) return;
+
+  // Checa se o botão clicado foi o de EDITAR
+  if (e.target.classList.contains('edit-btn')) {
+    window.location.href = `../templates/editarCupom.html?id=${id}`;
+  }
+
+  // Checa se o botão clicado foi o de EXCLUIR
+  if (e.target.classList.contains('delete-btn')) {
+    if (confirm(`Tem certeza que deseja excluir o cupom ID: ${id}?`)) {
+
+      fetch(`../api/excluirCupom.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: id }) 
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          alert('Cupom excluído!');
+          e.target.closest('tr').remove();
+        } else {
+          alert('Erro ao excluir: ' + data.message);
+        }
+      })
+      .catch(err => alert('Erro de conexão ao excluir.'));
+    }
+  }
+});
+
+  // EVENT DE CLIQUE NA TABELA PRODUTO (EDITAR/EXCLUIR)
   tbody.addEventListener('click', function (e) {
     const id = e.target.dataset.id;
     if (!id) return;
@@ -204,27 +291,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // Checa se o botão clicado foi o de EXCLUIR
     if (e.target.classList.contains('delete-btn')) {
       if (confirm(`Tem certeza que deseja excluir o produto ID: ${id}?`)) {
-        
+
         // Faz a chamada fetch para a API de exclusão
         fetch(`../api/excluirProduto.php`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ id: id }) 
+          body: JSON.stringify({ id: id })
         })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            alert('Produto excluído!');
-            // Remove a linha da tabela sem recarregar a página
-            e.target.closest('tr').remove();
-          } else {
-            // Mostra erros, incluindo "não autorizado" se a sessão expirou
-            alert('Erro ao excluir: ' + data.message);
-          }
-        })
-        .catch(err => alert('Erro de conexão ao excluir.'));
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              alert('Produto excluído!');
+              // Remove a linha da tabela sem recarregar a página
+              e.target.closest('tr').remove();
+            } else {
+              // Mostra erros, incluindo "não autorizado" se a sessão expirou
+              alert('Erro ao excluir: ' + data.message);
+            }
+          })
+          .catch(err => alert('Erro de conexão ao excluir.'));
       }
     }
   });

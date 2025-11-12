@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adicionar Cupom - Admin</title>
+  <link rel="stylesheet" href="../static/editarProduto.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Painel do Administrador</h1>
+    </header>
+
+    <main>
+      <form id="add-coupon-form" class="edit-form-container">
+        <h2>Adicionar Novo Cupom</h2>
+
+        <div class="form-group">
+          <label for="codigo">Código (ex: BEMVINDO10):</label>
+          <input type="text" id="codigo" name="codigo" required />
+        </div>
+
+        <div class="form-group">
+          <label for="tipo_desconto">Tipo de Desconto:</label>
+          <select id="tipo_desconto" name="tipo_desconto" required>
+            <option value="">Selecione o tipo</option>
+            <option value="percentual">Percentual (%)</option>
+            <option value="fixo">Fixo (R$)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="valor">Valor (ex: 10.00):</label>
+          <input
+            type="number"
+            id="valor"
+            name="valor"
+            step="0.01"
+            min="0"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="data_validade">Data de Validade:</label>
+          <input type="date" id="data_validade" name="data_validade" required />
+        </div>
+
+        <div class="form-group">
+          <label for="usos_restantes">Usos Restantes:</label>
+          <input
+            type="number"
+            id="usos_restantes"
+            name="usos_restantes"
+            step="1"
+            min="0"
+            required
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="save-btn">Adicionar Cupom</button>
+          <a href="admin.html" class="btn-cancelar">Cancelar</a>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="../noStatic/admin_add_cupom.js" defer></script>
+</body>
+</html>

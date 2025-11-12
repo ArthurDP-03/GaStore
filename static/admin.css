@@ -41,23 +41,29 @@ header h1 {
   transition: 0.3s;
 }
 
-/* Este ID agora só se aplica ao botão DENTRO da section-header */
+/* Botão Adicionar Produto */
 #add-product-btn {
   background-color: #28a745;
-  /* Verde */
   color: white;
 }
-
 #add-product-btn:hover {
   filter: brightness(0.9);
 }
 
-#logout-btn {
-  background-color: #dc3545;
-  /* Vermelho */
+/* NOVO: Botão Adicionar Cupom */
+#add-coupon-btn {
+  background-color: #28a745; /* Verde */
   color: white;
 }
+#add-coupon-btn:hover {
+  filter: brightness(0.9);
+}
 
+/* Botão Logout */
+#logout-btn {
+  background-color: #dc3545;
+  color: white;
+}
 #logout-btn:hover {
   filter: brightness(0.9);
 }
@@ -84,18 +90,36 @@ header h1 {
   color: #a68bff;
 }
 
-/* --- LISTA DE PRODUTOS --- */
-.product-list {
+/* --- ESTILO GENÉRICO SEÇÕES DE LISTA (Produto, Usuário, Cupom) --- */
+.product-list,
+.user-list,
+.coupon-list {
   background-color: #1c1c2b;
   padding: 20px;
   border-radius: 10px;
+  margin-top: 20px; /* Espaço entre as seções */
 }
 
-.product-list h2 {
+.product-list h2,
+.user-list h2,
+.coupon-list h2 {
   margin-top: 0;
 }
 
-/* --- NOVO: Estilos dos Filtros --- */
+/* Header da Seção (H2 + Botão) */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Adiciona espaço antes dos filtros/tabela */
+}
+
+.section-header h2 {
+  margin: 0; /* Remove margem padrão do h2 */
+}
+
+
+/* --- Filtros (Produto) --- */
 .filter-container {
   display: flex;
   flex-wrap: wrap; /* Permite quebrar linha em telas menores */
@@ -136,9 +160,8 @@ header h1 {
 #clear-filters-btn:hover {
   filter: brightness(0.9);
 }
-/* --- FIM NOVO --- */
 
-
+/* --- Tabela Genérica --- */
 .table {
   overflow-y: auto;
   max-height: 500px;
@@ -170,6 +193,7 @@ tbody tr:hover {
   background-color: #2a2a3a;
 }
 
+/* Imagem da capa (Produto) */
 tbody img {
   max-width: 50px;
   border-radius: 4px;
@@ -177,45 +201,14 @@ tbody img {
   margin-right: 10px;
 }
 
-
-/* ===== INÍCIO: Novas regras de CSS ===== */
-
-/* 1. Container para H2 e Botão Adicionar */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px; /* Adiciona espaço antes dos filtros */
-}
-
-.section-header h2 {
-  margin: 0; /* Remove margem padrão do h2 */
-}
-
-/* 2. Estilo da nova seção de usuários */
-.user-list {
-  background-color: #1c1c2b;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px; /* Espaço entre as seções */
-}
-
-.user-list h2 {
-  margin-top: 0;
-}
-
-/* 3. Estilo para o botão de excluir usuário (REMOVIDO) */
-
-/* 4. Estilo para destacar admin na lista */
+/* Destaque (Usuário) */
 .user-list .user-type-admin {
   font-weight: bold;
   color: #a68bff; /* Cor de admin */
 }
 
 
-/* ===== FIM: Novas regras de CSS ===== */
-
-
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {
   body {
     padding: 10px; /* Reduzir padding */
@@ -257,17 +250,13 @@ tbody img {
     min-width: 0; /* Reseta o min-width que estava atrapalhando */
   }
 
-  /* 1. Remove a rolagem horizontal */
+  /* --- Configuração Tabela Responsiva Genérica --- */
   .table {
     overflow-x: hidden;
   }
-
-  /* 2. Esconde o cabeçalho original */
   .table thead {
     display: none;
   }
-
-  /* 3. Remove comportamento de tabela e força empilhamento */
   .table table,
   .table tbody,
   .table tr,
@@ -276,16 +265,12 @@ tbody img {
     width: 100% !important;
     box-sizing: border-box;
   }
-
-  /* 4. Transforma a linha (tr) em um "card" */
   .table tr {
     margin-bottom: 20px;
     border: 1px solid #363647;
     border-radius: 5px;
     overflow: hidden;
   }
-
-  /* 5. Estiliza as células (td) */
   .table td {
     border: none;
     border-bottom: 1px solid #2a2a3a; /* Linha divisória dentro do card */
@@ -294,23 +279,11 @@ tbody img {
     padding-top: 12px;
     padding-bottom: 12px;
     position: relative;
-    /* Permite quebra de linha no conteúdo */
     white-space: normal; 
   }
   .table td:last-child {
     border-bottom: none; /* Remove linha da última célula */
   }
-
-  /* 6. Adiciona os RÓTULOS (Labels) usando CSS */
-  .table td:nth-of-type(1)::before { content: "ID:"; }
-  .table td:nth-of-type(2)::before { content: "Capa:"; }
-  .table td:nth-of-type(3)::before { content: "Título:"; }
-  .table td:nth-of-type(4)::before { content: "Preço:"; }
-  .table td:nth-of-type(5)::before { content: "Categoria:"; }
-  .table td:nth-of-type(6)::before { content: "Descrição:"; }
-  .table td:nth-of-type(7)::before { content: "Ações:"; }
-
-  /* 7. Estiliza os rótulos */
   .table td::before {
     display: inline-block;
     width: 80px; /* Largura fixa para os rótulos */
@@ -319,69 +292,46 @@ tbody img {
     margin-right: 10px;
   }
 
-  /* 8. Ajustes para células específicas */
-  
-  /* Faz a imagem da capa ficar abaixo do rótulo */
-  .table td:nth-of-type(2) img {
+  /* --- Tabela PRODUTOS (Responsivo) --- */
+  .product-list .table td:nth-of-type(1)::before { content: "ID:"; }
+  .product-list .table td:nth-of-type(2)::before { content: "Capa:"; }
+  .product-list .table td:nth-of-type(3)::before { content: "Título:"; }
+  .product-list .table td:nth-of-type(4)::before { content: "Preço:"; }
+  .product-list .table td:nth-of-type(5)::before { content: "Categoria:"; }
+  .product-list .table td:nth-of-type(6)::before { content: "Descrição:"; }
+  .product-list .table td:nth-of-type(7)::before { content: "Ações:"; }
+
+  /* Ajuste imagem capa */
+  .product-list .table td:nth-of-type(2) img {
     max-height: 80px;
     display: block;
     margin-top: 10px;
     margin-left: 90px; /* Alinha a imagem depois do espaço do rótulo */
   }
-
-  /* Faz os botões de ação ocuparem 100% da largura */
-  .table td:nth-of-type(7) button {
+  /* Ajuste botões de ação */
+  .product-list .table td:nth-of-type(7) button {
     width: 100%;
     margin: 5px 0 0 0;
   }
 
-
-  /* 6. Adiciona os RÓTULOS (Labels) para a tabela de USUÁRIOS */
-  .user-list .table thead { display: none; }
-
-  .user-list .table table,
-  .user-list .table tbody,
-  .user-list .table tr,
-  .user-list .table td {
-    display: block;
-    width: 100% !important;
-    box-sizing: border-box;
-  }
-
-  .user-list .table tr {
-    margin-bottom: 20px;
-    border: 1px solid #363647;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-
-  .user-list .table td {
-    border: none;
-    border-bottom: 1px solid #2a2a3a;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    position: relative;
-    white-space: normal; 
-  }
-  .user-list .table td:last-child {
-    border-bottom: none;
-  }
-  
-  /* Definição dos rótulos da tabela de usuários (Ações removida) */
+  /* --- Tabela USUÁRIOS (Responsivo) --- */
   .user-list .table td:nth-of-type(1)::before { content: "ID:"; }
   .user-list .table td:nth-of-type(2)::before { content: "Nome:"; }
   .user-list .table td:nth-of-type(3)::before { content: "Email:"; }
   .user-list .table td:nth-of-type(4)::before { content: "Tipo:"; }
 
-  /* Estilo dos rótulos (puxando do .table) */
-  .user-list .table td::before {
-    display: inline-block;
-    width: 80px;
-    font-weight: bold;
-    color: #a68bff;
-    margin-right: 10px;
+  /* --- Tabela CUPONS (Responsivo) --- */
+  .coupon-list .table td:nth-of-type(1)::before { content: "ID:"; }
+  .coupon-list .table td:nth-of-type(2)::before { content: "Código:"; }
+  .coupon-list .table td:nth-of-type(3)::before { content: "Tipo:"; }
+  .coupon-list .table td:nth-of-type(4)::before { content: "Valor:"; }
+  .coupon-list .table td:nth-of-type(5)::before { content: "Validade:"; }
+  .coupon-list .table td:nth-of-type(6)::before { content: "Usos:"; }
+  .coupon-list .table td:nth-of-type(7)::before { content: "Ações:"; }
+  
+  /* Ajuste botões de ação */
+  .coupon-list .table td:nth-of-type(7) button {
+    width: 100%;
+    margin: 5px 0 0 0;
   }
-
 }

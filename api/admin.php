@@ -84,6 +84,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     $stmt_users->close();
 
+    // --- BUSCAR TODOS OS CUPONS ---
+    $sql_coupons = "SELECT * FROM CupomDesconto ORDER BY data_validade DESC";
+    $result_coupons = mysqli_query($conn, $sql_coupons);
+
+    $coupons = [];
+    while ($row_coupon = $result_coupons->fetch_assoc()) {
+        $coupons[] = $row_coupon;
+    }
+
 
     // Retorna os dados
     echo json_encode([
@@ -95,7 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ],
         "products" => $products,
         "all_categories" => $all_categories, // <-- NOVO: Envia o array de categorias
-        "users" => $users // <-- NOVO: Envia o array de usuários
+        "users" => $users,
+        "coupons" => $coupons
     ]);
 
 } else {
