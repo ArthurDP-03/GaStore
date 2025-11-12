@@ -20,11 +20,31 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
+
+            // --- INÍCIO DA MODIFICAÇÃO: BUSCAR COMPRAS ---
+            $compras = [];
+            $sql_compras = "SELECT id_compra, data_compra, valor_total 
+                            FROM Compra 
+                            WHERE id_usuario = ? 
+                            ORDER BY data_compra DESC";
+            $stmt_compras = $conn->prepare($sql_compras);
+            $stmt_compras->bind_param("i", $id_usuario);
+            $stmt_compras->execute();
+            $result_compras = $stmt_compras->get_result();
+            
+            while ($row_compra = $result_compras->fetch_assoc()) {
+                $row_compra['valor_total'] = (float)$row_compra['valor_total'];
+                $compras[] = $row_compra;
+            }
+            $stmt_compras->close();
+            // --- FIM DA MODIFICAÇÃO ---
+
             $resposta = [
                 'status' => 'sucesso',
                 'id_usuario' => $id_usuario,
                 'nome' => $user['nome'],
-                'email' => $user['email']
+                'email' => $user['email'],
+                'compras' => $compras // Adiciona o array de compras
             ];
         } else {
             $resposta = [
@@ -41,7 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     }
 }
 
+// ... (O MÉTODO POST continua igual)
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+// (Restante do código POST permanece inalterado)
+// ...
     if (isset($_SESSION['id_usuario']) && isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'cliente') {
         $id_usuario = $_SESSION['id_usuario'];
         $nome = $_POST['nome'];

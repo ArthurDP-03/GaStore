@@ -3,14 +3,80 @@
 <head>
   <title>GaStore - Finalizar Compra</title>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale_1.0" />
   <link rel="stylesheet" href="../static/sobre.css" />
+  <style>
+    /* Estilos adicionais para a página de compra */
+    .compra-layout {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .compra-layout img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .compra-detalhes {
+      flex: 1;
+    }
+    .compra-detalhes h3 { margin-top: 0; }
+    .cupom-container {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .cupom-container input {
+      padding: 8px;
+      border: 1px solid #555;
+      background: #333;
+      color: #fff;
+      border-radius: 4px;
+    }
+    .total-container {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .total-container #preco-original {
+      text-decoration: line-through;
+      font-size: 0.7em;
+      color: #999;
+    }
+    #btn-confirmar-compra {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1.2em;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #btn-confirmar-compra:hover {
+      filter: brightness(0.9);
+    }
+    #btn-confirmar-compra:disabled {
+      background-color: #6c757d;
+      cursor: not-allowed;
+    }
+    #mensagem-compra {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <script src="../noStatic/menu.js"></script>
-  <div class="sobre-container">
+
+  <div class="sobre-container" id="compra-container">
     <h2>Finalizar Compra</h2>
-    <p>Página de compra (Em construção...)</p>
-  </div>
+    <div id="loading-message">
+      <p>Carregando detalhes do produto...</p>
+    </div>
+    </div>
+
+  <script src="../noStatic/compra.js" defer></script>
 </body>
 </html>
