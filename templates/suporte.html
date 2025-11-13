@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>GaStore - Suporte</title>
+    <title>GaStore - Suporte IA</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <link rel="stylesheet" href="../static/suporte.css" />
 </head>
 <body>
@@ -11,24 +12,35 @@
     <script src="../noStatic/menu.js"></script>
 
     <div class="suporte-container">
-        <h2>Central de Suporte 🎧</h2>
-        <p>
-            Estamos aqui para ajudar! Se você tem alguma dúvida sobre um pedido, problemas técnicos ou qualquer outra questão, por favor, entre em contato conosco através dos canais abaixo.
+        <h2>Central de Ajuda Inteligente 🤖</h2>
+        <p class="subtitulo">
+            Tire suas dúvidas agora mesmo com nossa IA! <br>
+            Pergunte sobre jogos, requisitos ou como comprar.
         </p>
 
-        <div class="contato-info">
-            <h3>Nossos Contatos</h3>
-            <p>
-                <strong>📧 E-mail:</strong>
-                <a href="mailto:emailsuporte@gmail.com">emailsuporte@gmail.com</a>
-            </p>
-            <p>
-                <strong>📞 Telefone / WhatsApp:</strong>
-                <a href="tel:+554111112222">+55 (41) 1111-2222</a>
-            </p>
-            <p class="horario">
-                Nosso horário de atendimento é de segunda a sexta-feira, das 9h às 18h.
-            </p>
+        <div class="chat-wrapper">
+            <div id="janela-chat" class="chat-janela">
+                <div class="balao balao-ia">
+                    Opa! Sou a IA da GaStore. Manda sua dúvida aí que eu tento resolver! 🎮
+                </div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="campo-msg" placeholder="Digite sua dúvida..." autocomplete="off">
+                <button id="btn-enviar">Enviar</button>
+            </div>
         </div>
-    </body>
+
+        <div class="contato-info">
+            <h3>Atendimento Humano</h3>
+            <p>A IA não resolveu? Fale com a gente:</p>
+            <div class="contatos-grid">
+                <p><strong>📧 E-mail:</strong> <a href="mailto:suporte@gastore.com">suporte@gastore.com</a></p>
+                <p><strong>📞 Tel:</strong> <a href="tel:+554199999999">(41) 99999-9999</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../noStatic/suporte.js"></script>
+</body>
 </html>
